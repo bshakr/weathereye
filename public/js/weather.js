@@ -14,8 +14,7 @@
         }
       } else {
         $('body').addClass('weather').html('Checking the weather...');
-        this.forcastApikey = "0fe656d926f844bc4c0745ac4ea9814f";
-        this.forcastURL = "https://api.forecast.io/forecast/";
+        this.forcastURL = "http://weather-shaker.herokuapp.com/forecast/";
         this.yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-";
         this.yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]";
         this.timezone = jstz.determine().name();
@@ -47,7 +46,7 @@
 
     Weather.prototype.checkForecast = function() {
       console.log("checking forecast ");
-      this.checkForecastURL = this.forcastURL + this.forcastApikey + '/' + localStorage.getItem("latitude1") + ',' + localStorage.getItem("longitude1") + "&callback=?";
+      this.checkForecastURL = this.forcastURL + '/' + localStorage.getItem("latitude1") + '/' + localStorage.getItem("longitude1");
       $.getJSON(this.checkForecastURL, function(data) {
         Weather.prototype.setupMainView(data);
         return true;
