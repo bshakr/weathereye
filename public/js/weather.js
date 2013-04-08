@@ -14,7 +14,7 @@
         }
       } else {
         $('body').addClass('weather').html('Checking the weather...');
-        this.forcastURL = "http://weather-shaker.herokuapp.com/forecast/";
+        this.forcastURL = "http://weather-shaker.herokuapp.com/forcast/";
         this.yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-";
         this.yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]";
         this.timezone = jstz.determine().name();
