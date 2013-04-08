@@ -2,9 +2,9 @@ class Weather
   init: () ->
     console.log "initializing"
     if !window.navigator.standalone
-#      if navigator.userAgent.match(/like Mac OS X/i)
-#        $('body').addClass('install').html('<div id="install"><div id="homescreen"><span></span><h2 id="add">Add to your <strong>Home Screen</strong></h2></div></div>');     
-#    else
+      if navigator.userAgent.match(/like Mac OS X/i)
+        $('body').addClass('install').html('<div id="install"><div id="homescreen"><span></span><h2 id="add">Add to your <strong>Home Screen</strong></h2></div></div>');     
+    else
       $('body').addClass('weather').html('Checking the weather...');
       @forcastApikey = "0fe656d926f844bc4c0745ac4ea9814f"
       @forcastURL = "https://api.forecast.io/forecast/"
@@ -39,9 +39,8 @@ class Weather
   checkForecast: () ->
     console.log "checking forecast "
     @checkForecastURL = @forcastURL + @forcastApikey + '/' + localStorage.getItem("latitude1") + ',' + localStorage.getItem("longitude1")
-    $.get @checkForecastURL,
+    $.getJSON @checkForecastURL,
         (data) ->
-          
           Weather::setupMainView(data)
           true
     true

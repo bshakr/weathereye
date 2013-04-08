@@ -9,6 +9,10 @@
     Weather.prototype.init = function() {
       console.log("initializing");
       if (!window.navigator.standalone) {
+        if (navigator.userAgent.match(/like Mac OS X/i)) {
+          $('body').addClass('install').html('<div id="install"><div id="homescreen"><span></span><h2 id="add">Add to your <strong>Home Screen</strong></h2></div></div>');
+        }
+      } else {
         $('body').addClass('weather').html('Checking the weather...');
         this.forcastApikey = "0fe656d926f844bc4c0745ac4ea9814f";
         this.forcastURL = "https://api.forecast.io/forecast/";
@@ -44,7 +48,7 @@
     Weather.prototype.checkForecast = function() {
       console.log("checking forecast ");
       this.checkForecastURL = this.forcastURL + this.forcastApikey + '/' + localStorage.getItem("latitude1") + ',' + localStorage.getItem("longitude1");
-      $.get(this.checkForecastURL, function(data) {
+      $.getJSON(this.checkForecastURL, function(data) {
         Weather.prototype.setupMainView(data);
         return true;
       });
