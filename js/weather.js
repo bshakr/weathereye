@@ -9,18 +9,14 @@
     Weather.prototype.init = function() {
       console.log("initializing");
       if (!window.navigator.standalone) {
-        if (navigator.userAgent.match(/like Mac OS X/i)) {
-          $('body').addClass('install').html('<div id="install"><div id="homescreen"><span></span><h2 id="add">Add to your <strong>Home Screen</strong></h2></div></div>');
-        }
-      } else {
-        $('body').addClass('weather').html('You have installed the app!');
+        $('body').addClass('weather').html('Checking the weather...');
         this.forcastApikey = "0fe656d926f844bc4c0745ac4ea9814f";
+        this.forcastURL = "https://api.forecast.io/forecast/";
         this.yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-";
         this.yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]";
         this.timezone = jstz.determine().name();
         this.setupCache();
         this.checkForecast();
-        this.setupMainView();
         this.setupSideMenu();
       }
       return true;
@@ -28,8 +24,9 @@
 
     Weather.prototype.setupCache = function() {
       console.log("setting up cache");
-      if (localStorage.getItem("initialized" !== "false")) {
-        localStorage.setItem("initialized", "false");
+      localStorage.clear();
+      if (localStorage.getItem("initialized") !== "true") {
+        localStorage.setItem("initialized", "true");
         localStorage.setItem("unit", "c");
         localStorage.setItem("city1", "Canterbury");
         localStorage.setItem("latitude1", "51.275970");
@@ -46,11 +43,18 @@
 
     Weather.prototype.checkForecast = function() {
       console.log("checking forecast ");
+      this.checkForecastURL = this.forcastURL + this.forcastApikey + '/' + localStorage.getItem("latitude1") + ',' + localStorage.getItem("longitude1");
+      $.get(this.checkForecastURL, function(data) {
+        Weather.prototype.setupMainView(data);
+        return true;
+      });
       return true;
     };
 
-    Weather.prototype.setupMainView = function() {
+    Weather.prototype.setupMainView = function(data) {
       console.log("setting up main View");
+      console.log(data);
+      $('body').addClass('weather').html('<h2>' + data.currently.summary + '</h2><h1>' + data.currently.temperature + '</h1><p>' + localStorage.getItem("city1") + '</p>');
       return true;
     };
 
