@@ -47,7 +47,7 @@
 
     Weather.prototype.checkForecast = function() {
       console.log("checking forecast ");
-      this.checkForecastURL = this.forcastURL + this.forcastApikey + '/' + localStorage.getItem("latitude1") + ',' + localStorage.getItem("longitude1");
+      this.checkForecastURL = this.forcastURL + this.forcastApikey + '/' + localStorage.getItem("latitude1") + ',' + localStorage.getItem("longitude1") + "&callback=?";
       $.getJSON(this.checkForecastURL, function(data) {
         Weather.prototype.setupMainView(data);
         return true;

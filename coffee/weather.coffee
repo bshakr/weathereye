@@ -38,7 +38,7 @@ class Weather
   
   checkForecast: () ->
     console.log "checking forecast "
-    @checkForecastURL = @forcastURL + @forcastApikey + '/' + localStorage.getItem("latitude1") + ',' + localStorage.getItem("longitude1")
+    @checkForecastURL = @forcastURL + @forcastApikey + '/' + localStorage.getItem("latitude1") + ',' + localStorage.getItem("longitude1") + "&callback=?"
     $.getJSON @checkForecastURL,
         (data) ->
           Weather::setupMainView(data)
