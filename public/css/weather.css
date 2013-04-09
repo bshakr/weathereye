@@ -1,11 +1,11 @@
 body{
-	font-family: Helvetica, sans-serif;
+  font-family: "open-sans", Helvetica, sans-serif;
 	font-size: 16px;
 	line-height: 22px;
 	color: #ffffff;
 	background-color: #2B75A1;
 	width: 100%;
-	letter-spacing: -0.05em;
+	letter-spacing: -0.07em;
 	text-align: center;
 }
 h1{
@@ -17,7 +17,7 @@ h1.temperature{
 	font-weight: 300;
 }
 h2{
-	font-size: 72px;
+	font-size: 62px;
 	font-weight: 700;
 }
 h3{
