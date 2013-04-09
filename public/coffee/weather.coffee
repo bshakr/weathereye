@@ -77,12 +77,11 @@ class Weather
       when "wind" then skycons.add(canvas, Skycons.WIND)
       when "fog" then skycons.add(canvas, Skycons.FOG)
     skycons.play()
-    canvas = document.getElementbyId(canvas)
-    canvas = document.getElementById('weather-icon')
-    canvas.width = 480
-    canvas.height = 480
-    canvas.style.width = "240px"
-    canvas.style.height = "240px"
+    leCanvas = document.getElementbyId(canvas)
+    leCanvas.width = 480
+    leCanvas.height = 480
+    leCanvas.style.width = "240px"
+    leCanvas.style.height = "240px"
     true
     
   
