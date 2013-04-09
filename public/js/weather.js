@@ -107,7 +107,8 @@
         case "fog":
           skycons.add(canvas, skycons.FOG);
       }
-      return skycons.play();
+      skycons.play();
+      return true;
     };
 
     return Weather;

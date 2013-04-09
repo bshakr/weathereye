@@ -76,6 +76,7 @@ class Weather
       when "wind" then skycons.add(canvas, skycons.WIND)
       when "fog" then skycons.add(canvas, skycons.FOG)
     skycons.play()
+    true
     
   
 
