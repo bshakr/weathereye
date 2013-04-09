@@ -54,7 +54,7 @@
       console.log("setting up main View");
       console.log(data);
       $('body').addClass('weather').html('<canvas id="weather-icon" width="240" height="240"></canvas><h2>' + localStorage.getItem("city1") + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1>');
-      this.addIcon("weather-icon", data.currently.icon);
+      Weather.prototype.addIcon("weather-icon", data.currently.icon);
       return true;
     };
 
@@ -73,39 +73,40 @@
 
     Weather.prototype.addIcon = function(canvas, condition) {
       var skycons;
+      console.log("adding icon");
       skycons = new Skycons({
         "color": "white"
       });
       switch (condition) {
         case "clear-day":
-          skycons.add(canvas, skycons.CLEAR_DAY);
+          skycons.add(canvas, Skycons.CLEAR_DAY);
           break;
         case "clear-night":
-          skycons.add(canvas, skycons.CLEAR_NIGHT);
+          skycons.add(canvas, Skycons.CLEAR_NIGHT);
           break;
         case "partly-cloudy-day":
-          skycons.add(canvas, skycons.PARTLY_CLOUDY_DAY);
+          skycons.add(canvas, Skycons.PARTLY_CLOUDY_DAY);
           break;
         case "partly-cloudy-night":
-          skycons.add(canvas, skycons.PARTLY_CLOUDY_NIGHT);
+          skycons.add(canvas, Skycons.PARTLY_CLOUDY_NIGHT);
           break;
         case "cloudy":
-          skycons.add(canvas, skycons.CLOUDY);
+          skycons.add(canvas, Skycons.CLOUDY);
           break;
         case "rain":
-          skycons.add(canvas, skycons.RAIN);
+          skycons.add(canvas, Skycons.RAIN);
           break;
         case "sleet":
-          skycons.add(canvas, skycons.SLEET);
+          skycons.add(canvas, Skycons.SLEET);
           break;
         case "snow":
-          skycons.add(canvas, skycons.SNOW);
+          skycons.add(canvas, Skycons.SNOW);
           break;
         case "wind":
-          skycons.add(canvas, skycons.WIND);
+          skycons.add(canvas, Skycons.WIND);
           break;
         case "fog":
-          skycons.add(canvas, skycons.FOG);
+          skycons.add(canvas, Skycons.FOG);
       }
       skycons.play();
       return true;
