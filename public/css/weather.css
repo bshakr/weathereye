@@ -5,7 +5,7 @@ body{
 	color: #ffffff;
 	background-color: #2B75A1;
 	width: 100%;
-	letter-spacing: -0.07em;
+	letter-spacing: -0.1em;
 	text-align: center;
 }
 h1{
@@ -13,14 +13,14 @@ h1{
 	font-weight: 500;
 }
 h1.temperature{
-	font-size: 160px;
+	font-size: 180px;
 	font-weight: 300;
 }
 h2{
-	font-size: 62px;
+	font-size: 48px;
 	font-weight: 700;
 }
 h3{
-	font-size: 50px;
+	font-size: 42px;
 	font-weight: 400;
 }
