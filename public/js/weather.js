@@ -57,7 +57,7 @@
     Weather.prototype.setupMainView = function(data) {
       console.log("setting up main View");
       console.log(data);
-      $('body').addClass('weather').html('<canvas id="weather-icon" width="240" height="240"></canvas><h2>' + localStorage.getItem("city1") + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1>');
+      $('body').addClass('weather').html('<canvas id="weather-icon" width="180" height="180"></canvas><h2>' + localStorage.getItem("city1").toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1>');
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
       return true;
     };
@@ -114,10 +114,10 @@
       }
       skycons.play();
       leCanvas = document.getElementById(canvas);
-      leCanvas.width = 480;
-      leCanvas.height = 480;
-      leCanvas.style.width = "240px";
-      leCanvas.style.height = "240px";
+      leCanvas.width = 360;
+      leCanvas.height = 360;
+      leCanvas.style.width = "180px";
+      leCanvas.style.height = "180px";
       return true;
     };
 
