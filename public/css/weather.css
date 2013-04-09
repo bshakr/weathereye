@@ -4,13 +4,16 @@ body{
 	line-height: 22px;
 	color: #ffffff;
 	background-color: #2B75A1;
+	width: 100%;
+	letter-spacing: -0.05em;
+	text-align: center;
 }
 h1{
 	font-size: 100px;
 	font-weight: 500;
 }
 h1.temperature{
-	font-size: 200px;
+	font-size: 160px;
 	font-weight: 300;
 }
 h2{
