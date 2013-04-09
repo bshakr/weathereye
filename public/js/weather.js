@@ -57,9 +57,8 @@
     Weather.prototype.setupMainView = function(data) {
       console.log("setting up main View");
       console.log(data);
-      $('body').addClass('weather').html('<canvas id="weather-icon" width="300" height="300"></canvas>\
-<h3>' + +'</h3><h2>' + localStorage.getItem("city1") + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1>');
-      Weather.prototype.addIcon("weather-icon", data.currently.icon);
+      $('body').addClass('weather').html('<canvas id="weather-icon" width="240" height="240"></canvas><h2>' + localStorage.getItem("city1") + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1>');
+      this.addIcon("weather-icon", data.currently.icon);
       return true;
     };
 
