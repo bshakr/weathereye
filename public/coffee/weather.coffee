@@ -78,7 +78,7 @@ class Weather
       when "fog" then skycons.add(canvas, Skycons.FOG)
     skycons.play()
     canvas = document.getElementbyId(canvas)
-    canvas = document.getElementById('pic')
+    canvas = document.getElementById('weather-icon')
     canvas.width = 480
     canvas.height = 480
     canvas.style.width = "240px"
