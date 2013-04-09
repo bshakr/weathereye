@@ -81,12 +81,6 @@
       skycons = new Skycons({
         "color": "white"
       });
-      canvas = document.getElementbyId(canvas);
-      canvas = document.getElementById('pic');
-      canvas.width = 640;
-      canvas.height = 960;
-      canvas.style.width = "320px";
-      canvas.style.height = "480px";
       switch (condition) {
         case "clear-day":
           skycons.add(canvas, Skycons.CLEAR_DAY);
@@ -119,6 +113,12 @@
           skycons.add(canvas, Skycons.FOG);
       }
       skycons.play();
+      canvas = document.getElementbyId(canvas);
+      canvas = document.getElementById('pic');
+      canvas.width = 480;
+      canvas.height = 480;
+      canvas.style.width = "240px";
+      canvas.style.height = "240px";
       return true;
     };
 

@@ -65,12 +65,6 @@ class Weather
   addIcon: (canvas, condition) ->
     console.log "adding icon"
     skycons = new Skycons({"color": "white"})
-    canvas = document.getElementbyId(canvas)
-    canvas = document.getElementById('pic')
-    canvas.width = 640
-    canvas.height = 960
-    canvas.style.width = "320px"
-    canvas.style.height = "480px"
     switch condition
       when "clear-day" then skycons.add(canvas, Skycons.CLEAR_DAY)
       when "clear-night" then skycons.add(canvas, Skycons.CLEAR_NIGHT)
@@ -83,6 +77,12 @@ class Weather
       when "wind" then skycons.add(canvas, Skycons.WIND)
       when "fog" then skycons.add(canvas, Skycons.FOG)
     skycons.play()
+    canvas = document.getElementbyId(canvas)
+    canvas = document.getElementById('pic')
+    canvas.width = 480
+    canvas.height = 480
+    canvas.style.width = "240px"
+    canvas.style.height = "240px"
     true
     
   
