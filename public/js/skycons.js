@@ -681,7 +681,6 @@ var Skycons;
     },
     draw: function(obj, time) {
       var canvas = obj.context.canvas;
-      obj.context.scale(2,2);
       if(this.resizeClear)
         canvas.width = canvas.width;
 
