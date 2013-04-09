@@ -9,8 +9,6 @@
     Weather.prototype.init = function() {
       console.log("initializing");
       if (!window.navigator.standalone) {
-
-      } else {
         $('body').addClass('weather').html('Checking the weather...');
         this.forcastURL = "http://weather-shaker.herokuapp.com/forcast/";
         this.yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-";
