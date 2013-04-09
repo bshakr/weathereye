@@ -47,20 +47,19 @@ class Weather
   setupMainView: (data) ->
     console.log "setting up main View"
     console.log(data)
-    $('body').addClass('weather').html('<h2>' + data.currently.summary + '</h2><h1>' +  data.currently.temperature  + '</h1><p>' + localStorage.getItem("city1") + '</p>')
+    $('body').addClass('weather').html('<h3>' + data.currently.summary + '</h3><h2>' + localStorage.getItem("city1") + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + ' °</h1>')
     true
   
   setupSideMenu: () ->
     console.log "setting up sidemenu"
     true
   
-  convertUnits: (unit, degree) ->
+  convertTemperature: (unit, degree) ->
     if @unit == 'f'
       return Math.round( ( degree * 1.8 ) + 32 )
     else
       return Math.round( ( degree - 32 ) / 1.8 )
     
-  
 
 window.weather = new Weather
 
