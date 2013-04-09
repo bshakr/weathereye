@@ -57,7 +57,9 @@
     Weather.prototype.setupMainView = function(data) {
       console.log("setting up main View");
       console.log(data);
-      $('body').addClass('weather').html('<h3>' + data.currently.summary + '</h3><h2>' + localStorage.getItem("city1") + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1>');
+      $('body').addClass('weather').html('<canvas id="weather-icon" width="300" height="300"></canvas>\
+<h3>' + +'</h3><h2>' + localStorage.getItem("city1") + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1>');
+      Weather.prototype.addIcon("weather-icon", data.currently.icon);
       return true;
     };
 
@@ -72,6 +74,45 @@
       } else {
         return Math.round((degree - 32) / 1.8);
       }
+    };
+
+    Weather.prototype.addIcon = function(canvas, condition) {
+      var skycons;
+      skycons = new Skycons({
+        "color": "white"
+      });
+      switch (condition) {
+        case "clear-day":
+          skycons.add(canvas, skycons.CLEAR_DAY);
+          break;
+        case "clear-night":
+          skycons.add(canvas, skycons.CLEAR_NIGHT);
+          break;
+        case "partly-cloudy-day":
+          skycons.add(canvas, skycons.PARTLY_CLOUDY_DAY);
+          break;
+        case "partly-cloudy-night":
+          skycons.add(canvas, skycons.PARTLY_CLOUDY_NIGHT);
+          break;
+        case "cloudy":
+          skycons.add(canvas, skycons.CLOUDY);
+          break;
+        case "rain":
+          skycons.add(canvas, skycons.RAIN);
+          break;
+        case "sleet":
+          skycons.add(canvas, skycons.SLEET);
+          break;
+        case "snow":
+          skycons.add(canvas, skycons.SNOW);
+          break;
+        case "wind":
+          skycons.add(canvas, skycons.WIND);
+          break;
+        case "fog":
+          skycons.add(canvas, skycons.FOG);
+      }
+      return skycons.play();
     };
 
     return Weather;

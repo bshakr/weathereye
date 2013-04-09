@@ -47,7 +47,9 @@ class Weather
   setupMainView: (data) ->
     console.log "setting up main View"
     console.log(data)
-    $('body').addClass('weather').html('<h3>' + data.currently.summary + '</h3><h2>' + localStorage.getItem("city1") + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1>')
+    $('body').addClass('weather').html('<canvas id="weather-icon" width="300" height="300"></canvas>
+<h3>' +  + '</h3><h2>' + localStorage.getItem("city1") + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1>')
+    Weather::addIcon "weather-icon", data.currently.icon
     true
   
   setupSideMenu: () ->
@@ -60,6 +62,23 @@ class Weather
     else
       return Math.round( ( degree - 32 ) / 1.8 )
     
+  
+  addIcon: (canvas, condition) ->
+    skycons = new Skycons({"color": "white"})
+    switch condition
+      when "clear-day" then skycons.add(canvas, skycons.CLEAR_DAY)
+      when "clear-night" then skycons.add(canvas, skycons.CLEAR_NIGHT)
+      when "partly-cloudy-day" then skycons.add(canvas, skycons.PARTLY_CLOUDY_DAY)
+      when "partly-cloudy-night" then skycons.add(canvas, skycons.PARTLY_CLOUDY_NIGHT)
+      when "cloudy" then skycons.add(canvas, skycons.CLOUDY)
+      when "rain" then skycons.add(canvas, skycons.RAIN)
+      when "sleet" then skycons.add(canvas, skycons.SLEET)
+      when "snow" then skycons.add(canvas, skycons.SNOW)
+      when "wind" then skycons.add(canvas, skycons.WIND)
+      when "fog" then skycons.add(canvas, skycons.FOG)
+    skycons.play()
+    
+  
 
 window.weather = new Weather
 

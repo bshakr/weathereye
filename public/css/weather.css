@@ -1,12 +1,16 @@
 body{
   font-family: "open-sans", Helvetica, sans-serif;
 	font-size: 16px;
-	line-height: 22px;
+	line-height: 1.5em;
 	color: #ffffff;
 	background-color: #2B75A1;
 	width: 100%;
 	letter-spacing: -0.1em;
 	text-align: center;
+}
+a{
+	color: #ffffff;
+	text-decoration: none;
 }
 h1{
 	font-size: 100px;
