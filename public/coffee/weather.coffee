@@ -56,7 +56,7 @@ class Weather
   addDailyForecast: (daily) ->
     console.log "setting up daily forecast"
     $.each(daily, (index, value) -> 
-      if index in [1...5]
+      if index in [1...6]
         min = Weather::convertTemperature('c',@.temperatureMin)
         max = Weather::convertTemperature('c',@.temperatureMax)
         $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+Weather::getDay(@.time)+'</div><div class="summary">' +Weather::getAverageDailyTemperature(min, max)+'</div></li>')
