@@ -54,12 +54,10 @@ class Weather
     true
   
   addDailyForecast: (daily) ->
-    for forecast in daily 
-      do (forecast) ->
-        $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+ forecast.time +'</div><div class="summary">' + forecast.summary +'</div></li>')
-        true
-      
-    
+    console.log "setting up daily forecast"
+    $.each(daily, () -> 
+      $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+ forecast.time +'</div><div class="summary">' + forecast.summary +'</div></li>')
+    )
   
   setupSideMenu: () ->
     console.log "setting up sidemenu"

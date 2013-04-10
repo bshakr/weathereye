@@ -65,16 +65,10 @@
     };
 
     Weather.prototype.addDailyForecast = function(daily) {
-      var forecast, _i, _len, _results;
-      _results = [];
-      for (_i = 0, _len = daily.length; _i < _len; _i++) {
-        forecast = daily[_i];
-        _results.push((function(forecast) {
-          $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + forecast.time(+'</div><div class="summary">' + forecast.summary(+'</div></li>')));
-          return true;
-        })(forecast));
-      }
-      return _results;
+      console.log("setting up daily forecast");
+      return $.each(daily, function() {
+        return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + forecast.time(+'</div><div class="summary">' + forecast.summary(+'</div></li>')));
+      });
     };
 
     Weather.prototype.setupSideMenu = function() {
