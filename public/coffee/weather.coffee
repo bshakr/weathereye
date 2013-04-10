@@ -49,11 +49,11 @@ class Weather
     console.log(data)
     $('body').addClass('weather').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + localStorage.getItem("city1").toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul>')
     Weather::addIcon("weather-icon", data.currently.icon)
-    Weather::addDailyForecast(data.daily)
+    Weather::addDailyForecast(data.daily.data)
     true
   
   addDailyForecast: (daily) ->
-    for forecast in daily.data 
+    for forecast in daily 
       do (forecast) ->
         $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+ forecast.time +'</div><div class="summary">' + forecast.summary +'</div></li>')
         true
