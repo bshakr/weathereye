@@ -56,7 +56,9 @@ class Weather
   addDailyForecast: (daily) ->
     console.log "setting up daily forecast"
     $.each(daily, () -> 
-      $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+Weather::getDay(@.time)+'</div><div class="summary">' +@.summary+'</div></li>')
+      min = Weather::convertTemperature('c',@.temperatureMin)
+      max = Weather::convertTemperature('c',@.temperatureMax)
+      $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+Weather::getDay(@.time)+'</div><div class="summary">' +Weather::getAverageDailyTemperature(min, max)+'</div></li>')
     )
   
   setupSideMenu: () ->
@@ -91,7 +93,11 @@ class Weather
     leCanvas.style.width = "140px"
     leCanvas.style.height = "140px"
     true
-    
+  
+  getAverageDailyTemperature: (min, max) ->
+    average = Math.round((min + max) / 2)
+    average
+  
   getDay: (timestamp) ->
     date = new Date(timestamp * 1000)
     dayNumber = date.getDay()

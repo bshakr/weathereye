@@ -30,3 +30,10 @@ h3{
 	font-size: 26px;
 	font-weight: 400;
 }
+ul#daily{
+	list-style: none;
+}
+ul#daily li{
+	float: left;
+	width: 45px;
+}
