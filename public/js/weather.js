@@ -67,7 +67,7 @@
     Weather.prototype.addDailyForecast = function(daily) {
       console.log("setting up daily forecast");
       return $.each(daily, function() {
-        return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + forecast.time(+'</div><div class="summary">' + forecast.summary(+'</div></li>')));
+        return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + daily.time + '</div><div class="summary">' + daily.summary + '</div></li>');
       });
     };
 
