@@ -56,7 +56,7 @@ class Weather
   addDailyForecast: (daily) ->
     console.log "setting up daily forecast"
     $.each(daily, () -> 
-      $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+@.time+'</div><div class="summary">' +@.summary+'</div></li>')
+      $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+Weather::getDay(time)+'</div><div class="summary">' +@.summary+'</div></li>')
     )
   
   setupSideMenu: () ->
@@ -92,6 +92,9 @@ class Weather
     leCanvas.style.height = "140px"
     true
     
+  getDay: (timestamp) ->
+    date = new Date(timestamp * 1000)
+    date.getDay()
   
 
 window.weather = new Weather

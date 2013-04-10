@@ -67,7 +67,7 @@
     Weather.prototype.addDailyForecast = function(daily) {
       console.log("setting up daily forecast");
       return $.each(daily, function() {
-        return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + this.time + '</div><div class="summary">' + this.summary + '</div></li>');
+        return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(time) + '</div><div class="summary">' + this.summary + '</div></li>');
       });
     };
 
@@ -128,6 +128,12 @@
       leCanvas.style.width = "140px";
       leCanvas.style.height = "140px";
       return true;
+    };
+
+    Weather.prototype.getDay = function(timestamp) {
+      var date;
+      date = new Date(timestamp * 1000);
+      return date.getDay();
     };
 
     return Weather;
