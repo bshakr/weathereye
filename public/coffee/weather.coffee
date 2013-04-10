@@ -52,7 +52,7 @@ class Weather
     Weather::addDailyForecast(data.daily)
     true
   
-  addDailyForecast(daily) ->
+  addDailyForecast: (daily) ->
     for forecast in daily.data 
       do (forecast) ->
         $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+ forecast.time +'</div><div class="summary">' + forecast.summary +'</div></li>')

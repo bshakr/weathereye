@@ -63,7 +63,7 @@
       return true;
     };
 
-    addDailyForecast(daily)(function() {
+    Weather.prototype.addDailyForecast = function(daily) {
       var forecast, _i, _len, _ref, _results;
       _ref = daily.data;
       _results = [];
@@ -75,7 +75,7 @@
         })(forecast));
       }
       return _results;
-    });
+    };
 
     Weather.prototype.setupSideMenu = function() {
       console.log("setting up sidemenu");
