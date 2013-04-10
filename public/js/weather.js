@@ -67,7 +67,7 @@
     Weather.prototype.addDailyForecast = function(daily) {
       console.log("setting up daily forecast");
       return $.each(daily, function() {
-        return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(time) + '</div><div class="summary">' + this.summary + '</div></li>');
+        return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(this.time) + '</div><div class="summary">' + this.summary + '</div></li>');
       });
     };
 
@@ -131,9 +131,27 @@
     };
 
     Weather.prototype.getDay = function(timestamp) {
-      var date;
+      var date, dayNumber;
       date = new Date(timestamp * 1000);
-      return date.getDay();
+      dayNumber = date.getDay();
+      switch (dayNumber) {
+        case 0:
+          return "SUN";
+        case 1:
+          return "MON";
+        case 2:
+          return "TUES";
+        case 3:
+          return "WED";
+        case 4:
+          return "THURS";
+        case 5:
+          return "FRI";
+        case 6:
+          return "SAT";
+        case 7:
+          return "SUN";
+      }
     };
 
     return Weather;
