@@ -57,10 +57,25 @@
     Weather.prototype.setupMainView = function(data) {
       console.log("setting up main View");
       console.log(data);
-      $('body').addClass('weather').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + localStorage.getItem("city1").toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1>');
+      $('body').addClass('weather').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + localStorage.getItem("city1").toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul>');
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
+      Weather.prototype.addDailyForecast(data.daily);
       return true;
     };
+
+    addDailyForecast(daily)(function() {
+      var forecast, _i, _len, _ref, _results;
+      _ref = daily.data;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        forecast = _ref[_i];
+        _results.push((function(forecast) {
+          $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + forecast.time(+'</div><div class="summary">' + forecast.summary(+'</div></li>')));
+          return true;
+        })(forecast));
+      }
+      return _results;
+    });
 
     Weather.prototype.setupSideMenu = function() {
       console.log("setting up sidemenu");
