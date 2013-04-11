@@ -43,6 +43,9 @@ h1.temperature{
 	font-weight: 300;
 	position: relative;
 	left: 24px;
+	width: 296px;
+	margin:0px;
+	padding: 0px;
 }
 h2{
 	font-size: 32px;
@@ -54,8 +57,13 @@ h3{
 }
 ul#daily{
 	list-style: none;
+	padding: 0;
+	margin: 0;
+
 }
 ul#daily li{
 	float: left;
 	width: 45px;
+	margin: 0;
+
 }
