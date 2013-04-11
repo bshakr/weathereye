@@ -1,3 +1,4 @@
+
 body{
 	position: absolute;
 	top: 0px;
@@ -7,7 +8,6 @@ body{
 	overflow: hidden;
 	padding: 0px;
 	margin: 0px;
-	background-color: #2B75A1;
 	overflow: hidden;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -17,6 +17,7 @@ body{
 	color: #ffffff;
 	letter-spacing: -0.1em;
 	text-align: center;
+	background-color: #D8D8D8;
 }
 #container {
 	position: absolute;
@@ -54,6 +55,8 @@ body{
 	-ms-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 	overflow: hidden;
+	background-color: #2B75A1;
+
 }
 
 
