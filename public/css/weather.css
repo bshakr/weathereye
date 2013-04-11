@@ -16,6 +16,41 @@ body{
 	text-align: center;
 
 }
+#weathereye {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	-webkit-transform: translate3d(0,0,0);
+	-webkit-transition: all 0.3s ease;
+	-webkit-transition-property: -webkit-transform, height, bottom;
+	
+}
+#weathereye.reduce {
+	-webkit-transform: translate3d(0,20px, 0);
+}
+#frame {
+	width: 100%;
+	height: 100%;
+	position: relative; 
+	-webkit-perspective: 1200px; 
+}
+#layer {
+	width: 100%; 
+	height: 100%; 
+	position: absolute; 
+	-webkit-transform-style: preserve-3d; 
+	-webkit-transition-property: -webkit-transform; 
+	-webkit-transition-duration: 550ms; 
+	-webkit-transition-timing-function: ease-out; 
+	-webkit-transition-delay: initial;
+	top: 0px; 
+	left: 0px;
+}
+#layer.fast {
+	-webkit-transition-duration: 250ms;
+}
 
 .scrollable
 {
