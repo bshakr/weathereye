@@ -12,7 +12,6 @@ class Weather
       @timezone = jstz.determine().name()
       this.setupCache()
       this.checkForecast()
-      this.setupSideMenu()
     true
   
   setupCache: () ->
@@ -51,6 +50,7 @@ class Weather
     $('body').addClass('weather').html('<div id="container"><div id="sidebar"></div><div id="mainView"><canvas id="weather-icon" width="140" height="140"></canvas><h2>' + localStorage.getItem("city1").toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul></div></div>')
     Weather::addIcon("weather-icon", data.currently.icon)
     Weather::addDailyForecast(data.daily.data)
+    @.setupSideMenu()
     true
   
   addDailyForecast: (daily) ->
