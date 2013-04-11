@@ -55,9 +55,6 @@ h3{
 }
 ul#daily{
 	list-style: none;
-	padding: 0;
-	margin: 0;
-
 }
 ul#daily li{
 	float: left;
