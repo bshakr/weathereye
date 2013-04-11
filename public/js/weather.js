@@ -101,7 +101,7 @@
         }
         fudge *= 15;
         angle = 90 - (90 * (data.current / data.max));
-        af = angel + fudge;
+        af = angle + fudge;
         if (af > 0) {
           sidebar.sidebar.oriDomi('restoreOriDomi');
           sidebar.sidebar.oriDomi('accordion', af);
