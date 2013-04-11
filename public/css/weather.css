@@ -67,3 +67,18 @@ ul#daily li{
 #weather-icon{
 	margin-top: 20px;
 }
+
+.loading {
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -5px;
+	margin-top: -5px;
+	background: white;
+	border-radius: 100px;
+	-webkit-animation: rotate 1.2s ease-in-out infinite;
+	-webkit-mask-box-image: -webkit-linear-gradient(white, rgba(255,255,255,0.75));
+	z-index: 999;
+}

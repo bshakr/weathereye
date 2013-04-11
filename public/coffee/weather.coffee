@@ -5,7 +5,7 @@ class Weather
       if navigator.userAgent.match(/like Mac OS X/i)
         $('body').addClass('install').html('<div id="install"><div id="homescreen"><span></span><h2 id="add">Add to your <strong>Home Screen</strong></h2></div></div>');     
     else
-      $('body').addClass('weather').html('Checking the weather...');
+      $('body').addClass('weather').html('<h3>Checking the weather...</h3><div class="loading" />');
       @forcastURL = "http://weathereye.co/forcast/"
       @yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-"
       @yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]"
