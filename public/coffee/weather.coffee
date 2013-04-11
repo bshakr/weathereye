@@ -6,7 +6,7 @@ class Weather
         $('body').addClass('install').html('<div id="install"><div id="homescreen"><span></span><h2 id="add">Add to your <strong>Home Screen</strong></h2></div></div>');     
     else
       $('body').addClass('weather').html('Checking the weather...');
-      @forcastURL = "http://weather-shaker.herokuapp.com/forcast/"
+      @forcastURL = "http://weathereye.co/forcast/"
       @yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-"
       @yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]"
       @timezone = jstz.determine().name()
@@ -37,7 +37,7 @@ class Weather
   
   checkForecast: () ->
     console.log "checking forecast "
-    @checkForecastURL = @forcastURL + '/' + localStorage.getItem("latitude1") + '/' + localStorage.getItem("longitude1")
+    @checkForecastURL = @forcastURL  + localStorage.getItem("latitude1") + '/' + localStorage.getItem("longitude1")
     $.getJSON @checkForecastURL,
         (data) ->
           Weather::setupMainView(data)
