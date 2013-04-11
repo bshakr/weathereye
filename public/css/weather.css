@@ -44,6 +44,8 @@ h1.temperature{
 	position: relative;
 	left: 24px;
 	width: 296px;
+	margin-top: 80px;
+	margin-bottom: 80px;
 }
 h2{
 	font-size: 32px;
@@ -61,4 +63,7 @@ ul#daily li{
 	width: 45px;
 	margin: 0;
 
+}
+#weather-icon{
+	margin-top: 20px;
 }

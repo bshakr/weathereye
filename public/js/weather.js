@@ -72,7 +72,7 @@
         if (__indexOf.call([1, 2, 3, 4, 5], index) >= 0) {
           min = Weather.prototype.convertTemperature('c', this.temperatureMin);
           max = Weather.prototype.convertTemperature('c', this.temperatureMax);
-          return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(this.time) + '</div><div class="summary">' + Weather.prototype.getAverageDailyTemperature(min, max) + '°</div></li>');
+          return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(this.time) + '</div><div class="summary">' + Weather.prototype.getDailyTemperature(min, max) + '°</div></li>');
         }
       });
     };
@@ -136,10 +136,8 @@
       return true;
     };
 
-    Weather.prototype.getAverageDailyTemperature = function(min, max) {
-      var average;
-      average = Math.round((min + max) / 2);
-      return average;
+    Weather.prototype.getDailyTemperature = function(min, max) {
+      return max;
     };
 
     Weather.prototype.getDay = function(timestamp) {
