@@ -5,7 +5,7 @@ class Weather
       if navigator.userAgent.match(/like Mac OS X/i)
         $('body').addClass('install').html('<div id="install"><div id="homescreen"><span></span><h2 id="add">Add to your <strong>Home Screen</strong></h2></div></div>');     
     else
-      $('body').addClass('weather').html('<div id="weathereye"><div id="frame"><div id="layer"><div class="slide"><h3>Checking the weather...</h3><div class="loading" /></div></div></div></div>');
+      $('body').addClass('weather').html('<div id="container"><div id="frame"><div id="layer"><div class="slide"><h3>Checking the weather...</h3><div class="loading" /></div></div></div></div>');
       @forcastURL = "http://weathereye.co/forcast/"
       @yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-"
       @yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]"
@@ -48,7 +48,7 @@ class Weather
     console.log "setting up main View"
     window.forecast = data
     console.log(data)
-    $('body').addClass('weather').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + localStorage.getItem("city1").toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul>')
+    $('body').addClass('weather').html('<div id="container"><div id="sidebar"></div><div id="mainView"><canvas id="weather-icon" width="140" height="140"></canvas><h2></div></div>' + localStorage.getItem("city1").toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul>')
     Weather::addIcon("weather-icon", data.currently.icon)
     Weather::addDailyForecast(data.daily.data)
     true
@@ -64,6 +64,27 @@ class Weather
   
   setupSideMenu: () ->
     console.log "setting up sidemenu"
+    sidebar = new SlidingView( 'sidebar', 'mainView' )
+    sidebar.sidebarWidth = 120;
+    sidebar.sidebar.oriDomi({ hPanels: 1, vPanels: 2, speed:1, perspective:800, shadingIntensity:4 })
+    sidebar.sidebar.oriDomi( 'accordion', 90 )
+    sidebar.sidebar.bind( "slidingViewProgress", (event, data) ->
+	    fudge = 1
+	    half = data.max/2;
+	    if data.current < half 
+	      fudge = (data.current)/half
+	    else if data.current > half
+	      fudge = ( half - ( data.current- half) ) / half
+	    fudge *= 15
+	    angle = 90 - ( ( 90 * ( data.current/ data.max)))
+	    af = angel + fudge
+	    if af > 0
+        sidebar.sidebar.oriDomi 'restoreOriDomi' 
+        sidebar.sidebar.oriDomi 'accordion', af 
+	    else
+        sidebar.sidebar.oriDomi 'restoreDOM' 
+      true
+    )
     true
   
   convertTemperature: (unit, degree) ->
