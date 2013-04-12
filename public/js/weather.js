@@ -39,12 +39,15 @@
         localStorage.setItem("city1", "Canterbury");
         localStorage.setItem("latitude1", "51.275970");
         localStorage.setItem("longitude1", "1.075610");
-        localStorage.setItem("city2", "New York");
-        localStorage.setItem("latitude2", "40.714550");
-        localStorage.setItem("longitude2", "-74.007118");
+        localStorage.setItem("city2", "London");
+        localStorage.setItem("latitude2", "51.506321");
+        localStorage.setItem("longitude2", "-0.127140");
         localStorage.setItem("city3", "Cairo");
         localStorage.setItem("latitude3", "30.049950");
         localStorage.setItem("longitude3", "31.248600");
+        localStorage.setItem("city4", "New York");
+        localStorage.setItem("latitude4", "40.714550");
+        localStorage.setItem("longitude4", "-74.007118");
       }
       return true;
     };
@@ -81,7 +84,7 @@
     Weather.prototype.setupSideMenu = function() {
       var sidebar;
       console.log("setting up sidemenu");
-      $('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>');
+      $('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">NEW YORK</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>');
       sidebar = new SlidingView('sidebar', 'mainView');
       sidebar.sidebarWidth = 220;
       sidebar.sidebar.oriDomi({
