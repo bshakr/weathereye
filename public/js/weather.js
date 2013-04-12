@@ -80,7 +80,7 @@
     Weather.prototype.setupSideMenu = function() {
       var sidebar;
       console.log("setting up sidemenu");
-      $('#sidebar').html('<h2>Cities</h2><ul class="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li></ul><h2>Temperature</h2><ul class="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>');
+      $('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li></ul id="temperature"><h2>Temperature</h2><ul class="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>');
       sidebar = new SlidingView('sidebar', 'mainView');
       sidebar.sidebarWidth = 220;
       sidebar.sidebar.oriDomi({
@@ -115,11 +115,11 @@
     };
 
     Weather.prototype.changeCity = function(ref) {
-      return window.alert($('li').index($(ref).parent()));
+      return window.alert($('ul#cities li').index($(ref).parent()));
     };
 
     Weather.prototype.changeTemperature = function(ref) {
-      return window.alert($('li').index($(ref).parent()));
+      return window.alert($('ul#temperature li').index($(ref).parent()));
     };
 
     Weather.prototype.convertTemperature = function(unit, degree) {
