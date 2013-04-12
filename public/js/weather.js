@@ -21,7 +21,7 @@
         this.timezone = jstz.determine().name();
         this.setupCache();
         callback = function(data) {
-          $('body').html('<div id="container"><div id="sidebar"></div></div>');
+          $('body').html('<div id="container"><div id="sidebar"></div><div id="mainView"></div></div>');
           Weather.prototype.setupMainView(data, localStorage.getItem("city1"));
           return Weather.prototype.setupSideMenu();
         };
