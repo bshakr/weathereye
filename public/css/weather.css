@@ -41,9 +41,10 @@ body{
 	-o-transform: translate3d(0,0,0);
 	-ms-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
-	overflow: hidden;
 	background-color: #333;
 	text-align: left;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 
 }
 #sidebar h2{
@@ -59,7 +60,6 @@ body{
 	padding: 0px;
 	box-sizing: border-box;
 	text-transform: uppercase;
-
 }
 #sidebar ul:last-child {
 	margin-bottom: 40px;
