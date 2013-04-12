@@ -17,7 +17,7 @@ body{
 	color: #ffffff;
 	letter-spacing: -0.1em;
 	text-align: center;
-	background-color: #D8D8D8;
+	background-color: #000;
 }
 #container {
 	position: absolute;
@@ -42,6 +42,7 @@ body{
 	-ms-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 	overflow: hidden;
+	background-color: #333;
 }
 
 #mainView {

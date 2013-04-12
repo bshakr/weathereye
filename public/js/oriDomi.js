@@ -325,7 +325,7 @@
       this.el.style.padding = '0';
       this.el.style.width = this.width + 'px';
       this.el.style.height = this.height + 'px';
-      this.el.style.backgroundColor = 'transparent';
+      this.el.style.backgroundColor = '#333';
       this.el.style.backgroundImage = 'none';
       this.el.style.border = 'none';
       this.el.style.outline = 'none';

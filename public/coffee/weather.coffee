@@ -65,8 +65,8 @@ class Weather
   setupSideMenu: () ->
     console.log "setting up sidemenu"
     sidebar = new SlidingView( 'sidebar', 'mainView' )
-    sidebar.sidebarWidth = 120;
-    sidebar.sidebar.oriDomi({ hPanels: 1, vPanels: 2, speed:1, perspective:800, shadingIntensity:4 })
+    sidebar.sidebarWidth = 220;
+    sidebar.sidebar.oriDomi({ hPanels: 1, vPanels: 2, speed:1, perspective:800, shadingIntensity:7 })
     sidebar.sidebar.oriDomi( 'accordion', 90 )
     sidebar.sidebar.bind( "slidingViewProgress", (event, data) ->
 	    fudge = 1
