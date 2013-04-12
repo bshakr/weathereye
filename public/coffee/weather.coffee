@@ -43,6 +43,7 @@ class Weather
     $.getJSON @checkForecastURL,
         (data) ->
           forecastData = data
+          true
     forecastData
   
   setupMainView: (data, city) ->

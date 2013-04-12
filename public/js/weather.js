@@ -53,7 +53,8 @@
       this.checkForecastURL = "http://weathereye.co/forcast/" + latitude + '/' + longitude;
       forecastData = null;
       $.getJSON(this.checkForecastURL, function(data) {
-        return forecastData = data;
+        forecastData = data;
+        return true;
       });
       return forecastData;
     };
