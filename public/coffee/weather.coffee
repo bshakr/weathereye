@@ -10,7 +10,7 @@ class Weather
       @yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]"
       @timezone = jstz.determine().name()
       @.setupCache()
-      callback = () -> Weather::setupMainView(data, localStorage.getItem("city1"))
+      callback = (data) -> Weather::setupMainView(data, localStorage.getItem("city1"))
       @.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback)
       $('body').html('<div id="container"><div id="sidebar"></div></div>')
       Weather::setupSideMenu()

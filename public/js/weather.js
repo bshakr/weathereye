@@ -20,7 +20,7 @@
         this.yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]";
         this.timezone = jstz.determine().name();
         this.setupCache();
-        callback = function() {
+        callback = function(data) {
           return Weather.prototype.setupMainView(data, localStorage.getItem("city1"));
         };
         this.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback);
