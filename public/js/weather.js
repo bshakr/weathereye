@@ -78,9 +78,13 @@
     };
 
     Weather.prototype.setupSideMenu = function() {
-      var sidebar;
+      var sidebar, touchmoveCallback;
       console.log("setting up sidemenu");
       $('#sidebar').html('<h2>Cities</h2><ul class="cities"><li><a href="#">CANTERBURY</a></li><li><a href="#">LONDON</a></li><li><a href="#">CAIRO</a></li></ul><h2>Temperature</h2><ul class="temperature"><li>fahrenheit</li><li>celsius</li></ul>');
+      touchmoveCallback = function(e) {
+        return e.preventDefault();
+      };
+      document.getElementById('mainView').addEventListener('touchmove', touchmoveCallback, false);
       sidebar = new SlidingView('sidebar', 'mainView');
       sidebar.sidebarWidth = 220;
       sidebar.sidebar.oriDomi({
