@@ -9,10 +9,10 @@ class Weather
       @yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-"
       @yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]"
       @timezone = jstz.determine().name()
-      this.setupCache()
-      data = Weather::checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"))
+      @.setupCache()
+      callback = () -> Weather::setupMainView(data, localStorage.getItem("city1"))
+      @.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback)
       $('body').html('<div id="container"><div id="sidebar"></div></div>')
-      Weather::setupMainView(data, localStorage.getItem("city1"))
       Weather::setupSideMenu()
     true
   
@@ -36,15 +36,11 @@ class Weather
       localStorage.setItem "longitude3" , "-74.007118"
     true
   
-  checkForecast: (latitude, longitude) ->
+  checkForecast: (latitude, longitude, callback) ->
     console.log "checking forecast "
     @checkForecastURL = "http://weathereye.co/forcast/"  + latitude + '/' + longitude
-    forecastData = null
-    $.getJSON @checkForecastURL,
-        (data) ->
-          forecastData = data
-          true
-    forecastData
+    $.getJSON(@checkForecastURL, callback)
+    true
   
   setupMainView: (data, city) ->
     console.log "setting up main View"

@@ -8,7 +8,7 @@
     function Weather() {}
 
     Weather.prototype.init = function() {
-      var data;
+      var callback;
       console.log("initializing");
       if (!window.navigator.standalone) {
         if (navigator.userAgent.match(/like Mac OS X/i)) {
@@ -20,9 +20,11 @@
         this.yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]";
         this.timezone = jstz.determine().name();
         this.setupCache();
-        data = Weather.prototype.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"));
+        callback = function() {
+          return Weather.prototype.setupMainView(data, localStorage.getItem("city1"));
+        };
+        this.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback);
         $('body').html('<div id="container"><div id="sidebar"></div></div>');
-        Weather.prototype.setupMainView(data, localStorage.getItem("city1"));
         Weather.prototype.setupSideMenu();
       }
       return true;
@@ -47,16 +49,11 @@
       return true;
     };
 
-    Weather.prototype.checkForecast = function(latitude, longitude) {
-      var forecastData;
+    Weather.prototype.checkForecast = function(latitude, longitude, callback) {
       console.log("checking forecast ");
       this.checkForecastURL = "http://weathereye.co/forcast/" + latitude + '/' + longitude;
-      forecastData = null;
-      $.getJSON(this.checkForecastURL, function(data) {
-        forecastData = data;
-        return true;
-      });
-      return forecastData;
+      $.getJSON(this.checkForecastURL, callback);
+      return true;
     };
 
     Weather.prototype.setupMainView = function(data, city) {
