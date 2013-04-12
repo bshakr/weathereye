@@ -8,6 +8,7 @@
     function Weather() {}
 
     Weather.prototype.init = function() {
+      var data;
       console.log("initializing");
       if (!window.navigator.standalone) {
         if (navigator.userAgent.match(/like Mac OS X/i)) {
@@ -20,7 +21,9 @@
         this.yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]";
         this.timezone = jstz.determine().name();
         this.setupCache();
-        this.checkForecast();
+        data = Weather.prototype.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"));
+        Weather.prototype.setupMainView(data, localStorage.getItem("city1"));
+        Weather.prototype.setupSideMenu();
       }
       return true;
     };
@@ -44,24 +47,23 @@
       return true;
     };
 
-    Weather.prototype.checkForecast = function() {
+    Weather.prototype.checkForecast = function(city, latitude, longitude) {
+      var data;
       console.log("checking forecast ");
-      this.checkForecastURL = this.forcastURL + localStorage.getItem("latitude1") + '/' + localStorage.getItem("longitude1");
-      $.getJSON(this.checkForecastURL, function(data) {
-        Weather.prototype.setupMainView(data);
-        return true;
+      this.checkForecastURL = this.forcastURL + latitude + '/' + longitude;
+      data = $.getJSON(this.checkForecastURL, function(data) {
+        return data;
       });
-      return true;
+      return data;
     };
 
-    Weather.prototype.setupMainView = function(data) {
+    Weather.prototype.setupMainView = function(data, city) {
       console.log("setting up main View");
       window.forecast = data;
       console.log(data);
-      $('body').addClass('weather').html('<div id="container"><div id="sidebar"></div><div id="mainView"><canvas id="weather-icon" width="140" height="140"></canvas><h2>' + localStorage.getItem("city1").toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul></div></div>');
+      $('body').addClass('weather').html('<div id="container"><div id="sidebar"></div><div id="mainView"><canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul></div></div>');
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
       Weather.prototype.addDailyForecast(data.daily.data);
-      this.setupSideMenu();
       return true;
     };
 
@@ -115,7 +117,13 @@
     };
 
     Weather.prototype.changeCity = function(ref) {
-      return window.alert($('ul#cities li').index($(ref).parent()));
+      var city, cityID, latitude, longitude;
+      cityID = $('ul#cities li').index($(ref).parent());
+      city = localStorage.getItem('city' + cityID);
+      latitude = localStorage.getItem('latitude' + cityID);
+      longitude = localStorage.getItem('longitude' + cityID);
+      Weather.prototype.checkForecast();
+      return $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul></div></div>');
     };
 
     Weather.prototype.changeTemperature = function(ref) {

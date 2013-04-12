@@ -11,7 +11,9 @@ class Weather
       @yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]"
       @timezone = jstz.determine().name()
       this.setupCache()
-      this.checkForecast()
+      data = Weather::checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"))
+      Weather::setupMainView(data, localStorage.getItem("city1"))
+      Weather::setupSideMenu()
     true
   
   setupCache: () ->
@@ -34,23 +36,21 @@ class Weather
       localStorage.setItem "longitude3" , "-74.007118"
     true
   
-  checkForecast: () ->
+  checkForecast: (city, latitude, longitude) ->
     console.log "checking forecast "
-    @checkForecastURL = @forcastURL  + localStorage.getItem("latitude1") + '/' + localStorage.getItem("longitude1")
-    $.getJSON @checkForecastURL,
+    @checkForecastURL = @forcastURL  + latitude + '/' + longitude
+    data = $.getJSON @checkForecastURL,
         (data) ->
-          Weather::setupMainView(data)
-          true
-    true
+          data
+    data
   
-  setupMainView: (data) ->
+  setupMainView: (data, city) ->
     console.log "setting up main View"
     window.forecast = data
     console.log(data)
-    $('body').addClass('weather').html('<div id="container"><div id="sidebar"></div><div id="mainView"><canvas id="weather-icon" width="140" height="140"></canvas><h2>' + localStorage.getItem("city1").toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul></div></div>')
+    $('body').addClass('weather').html('<div id="container"><div id="sidebar"></div><div id="mainView"><canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul></div></div>')
     Weather::addIcon("weather-icon", data.currently.icon)
     Weather::addDailyForecast(data.daily.data)
-    @.setupSideMenu()
     true
   
   addDailyForecast: (daily) ->
@@ -89,7 +89,13 @@ class Weather
     true
   
   changeCity: (ref) ->
-    window.alert($('ul#cities li').index($(ref).parent()))
+    cityID = $('ul#cities li').index($(ref).parent())
+    city = localStorage.getItem('city'+cityID)
+    latitude = localStorage.getItem('latitude'+ cityID)
+    longitude = localStorage.getItem('longitude'+cityID)
+    Weather::checkForecast()
+    $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul></div></div>')
+    
   
   changeTemperature: (ref) ->
     window.alert($('ul#temperature li').index($(ref).parent()))
