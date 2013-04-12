@@ -80,7 +80,7 @@
     Weather.prototype.setupSideMenu = function() {
       var sidebar;
       console.log("setting up sidemenu");
-      $('#sidebar').html('<h2>Cities</h2><ul class="cities"><li><a href="#">CANTERBURY</a></li><li><a href="#">LONDON</a></li><li><a href="#">CAIRO</a></li></ul><h2>Temperature</h2><ul class="temperature"><li>fahrenheit</li><li>celsius</li></ul>');
+      $('#sidebar').html('<h2>Cities</h2><ul class="cities"><li><a href="#">CANTERBURY</a></li><li><a href="#" ontouchdown="weather.alert(this)">LONDON</a></li><li><a href="#">CAIRO</a></li></ul><h2>Temperature</h2><ul class="temperature"><li>fahrenheit</li><li>celsius</li></ul>');
       sidebar = new SlidingView('sidebar', 'mainView');
       sidebar.sidebarWidth = 220;
       sidebar.sidebar.oriDomi({
@@ -112,6 +112,10 @@
         return true;
       });
       return true;
+    };
+
+    Weather.prototype.alert = function(ref) {
+      return window.alert($(ref).html());
     };
 
     Weather.prototype.convertTemperature = function(unit, degree) {
