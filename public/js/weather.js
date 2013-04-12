@@ -39,12 +39,12 @@
         localStorage.setItem("city1", "Canterbury");
         localStorage.setItem("latitude1", "51.275970");
         localStorage.setItem("longitude1", "1.075610");
-        localStorage.setItem("city2", "Cairo");
-        localStorage.setItem("latitude2", "30.049950");
-        localStorage.setItem("longitude2", "31.248600");
-        localStorage.setItem("city3", "New York");
-        localStorage.setItem("latitude3", "40.714550");
-        localStorage.setItem("longitude3", "-74.007118");
+        localStorage.setItem("city2", "New York");
+        localStorage.setItem("latitude2", "40.714550");
+        localStorage.setItem("longitude2", "-74.007118");
+        localStorage.setItem("city3", "Cairo");
+        localStorage.setItem("latitude3", "30.049950");
+        localStorage.setItem("longitude3", "31.248600");
       }
       return true;
     };
@@ -117,12 +117,13 @@
 
     Weather.prototype.changeCity = function(ref) {
       var callback, city, cityID, latitude, longitude;
-      cityID = $('ul#cities li').index($(ref).parent());
+      cityID = $('ul#cities li').index($(ref).parent()) + 1;
       city = localStorage.getItem('city' + cityID);
       latitude = localStorage.getItem('latitude' + cityID);
       longitude = localStorage.getItem('longitude' + cityID);
       callback = function(data) {
-        return Weather.prototype.setupMainView(data, city);
+        Weather.prototype.setupMainView(data, city);
+        return true;
       };
       Weather.prototype.checkForecast(latitude, longitude, callback);
       return $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul></div></div>');
