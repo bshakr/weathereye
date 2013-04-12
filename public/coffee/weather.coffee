@@ -11,10 +11,11 @@ class Weather
       @timezone = jstz.determine().name()
       @.setupCache()
       callback = (data) -> 
+        $('body').html('<div id="container"><div id="sidebar"></div></div>')
         Weather::setupMainView(data, localStorage.getItem("city1"))
         Weather::setupSideMenu()
       @.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback)
-      $('body').html('<div id="container"><div id="sidebar"></div></div>')
+      
       
     true
   
