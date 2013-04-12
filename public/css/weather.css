@@ -32,7 +32,8 @@ body{
 
 #sidebar{
 	position: absolute;
-	width: 220px;
+	width: 225px;
+	height: 568px;
 	left: 0px;
 	top: 0px;
 	bottom: 0px;
@@ -41,18 +42,23 @@ body{
 	-o-transform: translate3d(0,0,0);
 	-ms-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
-	background-color: #333;
+	background: #1b1b1b;
+	background: -webkit-linear-gradient(#1b1b1b 0%, #101010 100%)
 	text-align: left;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 
 }
 #sidebar h2{
-	font-size: 24px;
-	font-weight: 700;
+	font-size: 21px;
+	font-weight: 500;
 	text-transform: uppercase;
-	margin-left: 14px;
-	margin-top: 14px;
+	padding-left: 14px;
+	padding-top: 14px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid rgba(0,0,0,0.75);
+	box-shadow: 0px 1px 0px rgba(255,255,255,0.1);
+	background: -webkit-linear-gradient(rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.38) 100%)
 	
 }
 #sidebar ul{
@@ -95,6 +101,8 @@ body{
 	transform: translate3d(0,0,0);
 	overflow: hidden;
 	background-color: #2B75A1;
+	border-radius: 10px;
+	box-shadow: -2px 0px 14px rgba(0,0,0,0.654);
 
 }
 
