@@ -60,7 +60,7 @@
       console.log("setting up main View");
       window.forecast = data;
       console.log(data);
-      $('mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul>');
+      $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul>');
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
       Weather.prototype.addDailyForecast(data.daily.data);
       return true;
