@@ -47,17 +47,20 @@ body{
 
 }
 #sidebar h2{
-	width: 100%;
-	list-style: none;
-	margin: 0px;
-	padding: 0px;
-	box-sizing: border-box;
 	font-size: 24px;
 	font-weight: 700;
 	text-transform: uppercase;
 	
 }
+#sidebar ul{
+	width: 100%;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	text-transform: uppercase;
 
+}
 #sidebar ul:last-child {
 	margin-bottom: 40px;
 }
@@ -109,7 +112,7 @@ h1.temperature{
 	left: 24px;
 	width: 296px;
 	margin-top: 80px;
-	margin-bottom: 80px;
+	margin-bottom: 50px;
 }
 h2{
 	font-size: 32px;
