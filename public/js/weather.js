@@ -80,6 +80,7 @@
     Weather.prototype.setupSideMenu = function() {
       var sidebar;
       console.log("setting up sidemenu");
+      $('#sidebar').html('<h1>Cities</h1><ul class="cities"><li><a href="#">CANTERBURY</a></li><li><a href="#">LONDON</a></li><li><a href="#">CAIRO</a></li></ul>');
       sidebar = new SlidingView('sidebar', 'mainView');
       sidebar.sidebarWidth = 220;
       sidebar.sidebar.oriDomi({
@@ -110,7 +111,6 @@
         }
         return true;
       });
-      $('#sidebar').html('<h1>Cities</h1><ul class="cities"><li><a href="#">CANTERBURY</a></li><li><a href="#">LONDON</a></li><li><a href="#">CAIRO</a></li></ul>');
       return true;
     };
 
