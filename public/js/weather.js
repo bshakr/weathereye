@@ -115,11 +115,11 @@
     };
 
     Weather.prototype.changeCity = function(ref) {
-      return window.alert($(ref).index());
+      return window.alert($('li').index($(ref).parent()));
     };
 
     Weather.prototype.changeTemperature = function(ref) {
-      return window.alert($(ref).index());
+      return window.alert($('li').index($(ref).parent()));
     };
 
     Weather.prototype.convertTemperature = function(unit, degree) {

@@ -89,10 +89,10 @@ class Weather
     true
   
   changeCity: (ref) ->
-    window.alert($(ref).index())
+    window.alert($('li').index($(ref).parent()))
   
   changeTemperature: (ref) ->
-    window.alert($(ref).index())
+    window.alert($('li').index($(ref).parent()))
   
   convertTemperature: (unit, degree) ->
     if @unit == 'f'
