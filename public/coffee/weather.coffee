@@ -94,7 +94,9 @@ class Weather
     city = localStorage.getItem('city'+cityID)
     latitude = localStorage.getItem('latitude'+ cityID)
     longitude = localStorage.getItem('longitude'+cityID)
-    Weather::checkForecast()
+    callback = (data) ->
+      Weather::setupMainView(data, city)
+    Weather::checkForecast(latitude, longitude, callback)
     $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul></div></div>')
     
   

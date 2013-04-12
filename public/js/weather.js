@@ -116,12 +116,15 @@
     };
 
     Weather.prototype.changeCity = function(ref) {
-      var city, cityID, latitude, longitude;
+      var callback, city, cityID, latitude, longitude;
       cityID = $('ul#cities li').index($(ref).parent());
       city = localStorage.getItem('city' + cityID);
       latitude = localStorage.getItem('latitude' + cityID);
       longitude = localStorage.getItem('longitude' + cityID);
-      Weather.prototype.checkForecast();
+      callback = function(data) {
+        return Weather.prototype.setupMainView(data, city);
+      };
+      Weather.prototype.checkForecast(latitude, longitude, callback);
       return $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul></div></div>');
     };
 
