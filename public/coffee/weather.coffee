@@ -98,10 +98,8 @@ class Weather
     callback = (data) ->
       Weather::setupMainView(data, city)
       true
-    
     Weather::checkForecast(latitude, longitude, callback)
-    $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul></div></div>')
-    
+    true
   
   changeTemperature: (ref) ->
     window.alert($('ul#temperature li').index($(ref).parent()))

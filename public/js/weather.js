@@ -126,7 +126,7 @@
         return true;
       };
       Weather.prototype.checkForecast(latitude, longitude, callback);
-      return $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul></div></div>');
+      return true;
     };
 
     Weather.prototype.changeTemperature = function(ref) {
