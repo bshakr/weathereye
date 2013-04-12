@@ -39,7 +39,7 @@ class Weather
   checkForecast: (latitude, longitude) ->
     console.log "checking forecast "
     @checkForecastURL = "http://weathereye.co/forcast/"  + latitude + '/' + longitude
-    forecastData
+    forecastData = null
     $.getJSON @checkForecastURL,
         (data) ->
           forecastData = data

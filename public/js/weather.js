@@ -48,12 +48,11 @@
     };
 
     Weather.prototype.checkForecast = function(latitude, longitude) {
+      var forecastData;
       console.log("checking forecast ");
       this.checkForecastURL = "http://weathereye.co/forcast/" + latitude + '/' + longitude;
-      forecastData;
-
+      forecastData = null;
       $.getJSON(this.checkForecastURL, function(data) {
-        var forecastData;
         return forecastData = data;
       });
       return forecastData;
