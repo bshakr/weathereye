@@ -80,7 +80,7 @@
     Weather.prototype.setupSideMenu = function() {
       var sidebar;
       console.log("setting up sidemenu");
-      $('#sidebar').html('<h2>Cities</h2><ul class="cities"><li><a href="#">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.alert(this)">LONDON</a></li><li><a href="#">CAIRO</a></li></ul><h2>Temperature</h2><ul class="temperature"><li>fahrenheit</li><li>celsius</li></ul>');
+      $('#sidebar').html('<h2>Cities</h2><ul class="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li></ul><h2>Temperature</h2><ul class="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>');
       sidebar = new SlidingView('sidebar', 'mainView');
       sidebar.sidebarWidth = 220;
       sidebar.sidebar.oriDomi({
@@ -114,8 +114,12 @@
       return true;
     };
 
-    Weather.prototype.alert = function(ref) {
-      return window.alert($(ref).html());
+    Weather.prototype.changeCity = function(ref) {
+      return window.alert($(ref).index());
+    };
+
+    Weather.prototype.changeTemperature = function(ref) {
+      return window.alert($(ref).index());
     };
 
     Weather.prototype.convertTemperature = function(unit, degree) {
