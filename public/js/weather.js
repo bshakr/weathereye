@@ -21,11 +21,11 @@
         this.timezone = jstz.determine().name();
         this.setupCache();
         callback = function(data) {
-          return Weather.prototype.setupMainView(data, localStorage.getItem("city1"));
+          Weather.prototype.setupMainView(data, localStorage.getItem("city1"));
+          return Weather.prototype.setupSideMenu();
         };
         this.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback);
         $('body').html('<div id="container"><div id="sidebar"></div></div>');
-        Weather.prototype.setupSideMenu();
       }
       return true;
     };
