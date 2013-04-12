@@ -16,12 +16,12 @@
         }
       } else {
         $('body').addClass('weather').html('<div id="container"><div id="frame"><div id="layer"><div class="slide"><h3>Checking the weather...</h3><div class="loading" /></div></div></div></div>');
-        this.forcastURL = "http://weathereye.co/forcast/";
         this.yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-";
         this.yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]";
         this.timezone = jstz.determine().name();
         this.setupCache();
         data = Weather.prototype.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"));
+        $('body').html('<div id="container"><div id="sidebar"></div></div>');
         Weather.prototype.setupMainView(data, localStorage.getItem("city1"));
         Weather.prototype.setupSideMenu();
       }
@@ -48,20 +48,22 @@
     };
 
     Weather.prototype.checkForecast = function(latitude, longitude) {
-      var data;
       console.log("checking forecast ");
-      this.checkForecastURL = this.forcastURL + latitude + '/' + longitude;
-      data = $.getJSON(this.checkForecastURL, function(data) {
-        return data;
+      this.checkForecastURL = "http://weathereye.co/forcast/" + latitude + '/' + longitude;
+      forecastData;
+
+      $.getJSON(this.checkForecastURL, function(data) {
+        var forecastData;
+        return forecastData = data;
       });
-      return data;
+      return forecastData;
     };
 
     Weather.prototype.setupMainView = function(data, city) {
       console.log("setting up main View");
       window.forecast = data;
       console.log(data);
-      $('body').addClass('weather').html('<div id="container"><div id="sidebar"></div><div id="mainView"><canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul></div></div>');
+      $('mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul>');
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
       Weather.prototype.addDailyForecast(data.daily.data);
       return true;

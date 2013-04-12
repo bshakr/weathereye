@@ -3,15 +3,15 @@ class Weather
     console.log "initializing"
     if !window.navigator.standalone
       if navigator.userAgent.match(/like Mac OS X/i)
-        $('body').addClass('install').html('<div id="install"><div id="homescreen"><span></span><h2 id="add">Add to your <strong>Home Screen</strong></h2></div></div>');     
+        $('body').addClass('install').html('<div id="install"><div id="homescreen"><span></span><h2 id="add">Add to your <strong>Home Screen</strong></h2></div></div>')     
     else
-      $('body').addClass('weather').html('<div id="container"><div id="frame"><div id="layer"><div class="slide"><h3>Checking the weather...</h3><div class="loading" /></div></div></div></div>');
-      @forcastURL = "http://weathereye.co/forcast/"
+      $('body').addClass('weather').html('<div id="container"><div id="frame"><div id="layer"><div class="slide"><h3>Checking the weather...</h3><div class="loading" /></div></div></div></div>')
       @yahooAppId = "pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-"
       @yahooURL = "http://where.yahooapis.com/v1/places.q('[place')?appid=[appid]"
       @timezone = jstz.determine().name()
       this.setupCache()
       data = Weather::checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"))
+      $('body').html('<div id="container"><div id="sidebar"></div></div>')
       Weather::setupMainView(data, localStorage.getItem("city1"))
       Weather::setupSideMenu()
     true
@@ -38,17 +38,18 @@ class Weather
   
   checkForecast: (latitude, longitude) ->
     console.log "checking forecast "
-    @checkForecastURL = @forcastURL  + latitude + '/' + longitude
-    data = $.getJSON @checkForecastURL,
+    @checkForecastURL = "http://weathereye.co/forcast/"  + latitude + '/' + longitude
+    forecastData
+    $.getJSON @checkForecastURL,
         (data) ->
-          data
-    data
+          forecastData = data
+    forecastData
   
   setupMainView: (data, city) ->
     console.log "setting up main View"
     window.forecast = data
     console.log(data)
-    $('body').addClass('weather').html('<div id="container"><div id="sidebar"></div><div id="mainView"><canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul></div></div>')
+    $('mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul>')
     Weather::addIcon("weather-icon", data.currently.icon)
     Weather::addDailyForecast(data.daily.data)
     true
@@ -66,12 +67,12 @@ class Weather
     console.log "setting up sidemenu"
     $('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>')
     sidebar = new SlidingView( 'sidebar', 'mainView' )
-    sidebar.sidebarWidth = 220;
+    sidebar.sidebarWidth = 220
     sidebar.sidebar.oriDomi({ hPanels: 1, vPanels: 2, speed:1, perspective:800, shadingIntensity:7 })
     sidebar.sidebar.oriDomi( 'accordion', 90 )
     sidebar.sidebar.bind( "slidingViewProgress", (event, data) ->
 	    fudge = 1
-	    half = data.max/2;
+	    half = data.max/2
 	    if data.current < half 
 	      fudge = (data.current)/half
 	    else if data.current > half
