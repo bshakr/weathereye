@@ -47,7 +47,7 @@
       return true;
     };
 
-    Weather.prototype.checkForecast = function(city, latitude, longitude) {
+    Weather.prototype.checkForecast = function(latitude, longitude) {
       var data;
       console.log("checking forecast ");
       this.checkForecastURL = this.forcastURL + latitude + '/' + longitude;

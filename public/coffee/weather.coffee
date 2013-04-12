@@ -36,7 +36,7 @@ class Weather
       localStorage.setItem "longitude3" , "-74.007118"
     true
   
-  checkForecast: (city, latitude, longitude) ->
+  checkForecast: (latitude, longitude) ->
     console.log "checking forecast "
     @checkForecastURL = @forcastURL  + latitude + '/' + longitude
     data = $.getJSON @checkForecastURL,
