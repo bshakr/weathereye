@@ -71,11 +71,11 @@ class Weather
   setupSideMenu: () ->
     console.log "setting up sidemenu"
     $('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">NEW YORK</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>')
-    sidebar = new SlidingView( 'sidebar', 'mainView' )
-    sidebar.sidebarWidth = 220
-    sidebar.sidebar.oriDomi({ hPanels: 1, vPanels: 2, speed:1, perspective:800, shadingIntensity:7 })
-    sidebar.sidebar.oriDomi( 'accordion', 90 )
-    sidebar.sidebar.bind( "slidingViewProgress", (event, data) ->
+    @sidemenu = new SlidingView( 'sidebar', 'mainView' )
+    @sidemenu.sidebarWidth = 220
+    @sidemenu.sidebar.oriDomi({ hPanels: 1, vPanels: 2, speed:1, perspective:800, shadingIntensity:7 })
+    @sidemenu.sidebar.oriDomi( 'accordion', 90 )
+    @sidemenu.sidebar.bind( "slidingViewProgress", (event, data) ->
 	    fudge = 1
 	    half = data.max/2
 	    if data.current < half 
@@ -86,10 +86,10 @@ class Weather
 	    angle = 90 - ( ( 90 * ( data.current/ data.max)))
 	    af = angle + fudge
 	    if af > 0
-        sidebar.sidebar.oriDomi 'restoreOriDomi' 
-        sidebar.sidebar.oriDomi 'accordion', af 
+        @sidemenu.sidebar.oriDomi 'restoreOriDomi' 
+        @sidemenu.sidebar.oriDomi 'accordion', af 
 	    else
-        sidebar.sidebar.oriDomi 'restoreDOM' 
+        @sidemenu.sidebar.oriDomi 'restoreDOM' 
       true
     )
     true
@@ -113,19 +113,22 @@ class Weather
         localStorage.setItem "unit" , "f"
         $('ul#temperature li.current').removeClass("current")
         $(ref).parent().addClass("current")
-        Weather::updateTemperatures("f")
+        oldTemp = $('h1.temperature').html().substring(0, s.length- 1)
+        newTemp = Weather::convertTemperature("f", mainTemp)
+        Weather::updateTemperatures('h1.temperature', oldTemp, newTemp)
     else if unit == 1
       if existingUnit != "c"
         localStorage.setItem "unit" , "c"
         $('ul#temperature li.current').removeClass("current")
         $(ref).parent().addClass("current")
-        Weather::updateTemperatures("c")
+        oldTemp = $('h1.temperature').html().substring(0, s.length- 1)
+        newTemp = Weather::convertTemperature("c", mainTemp)
+        Weather::updateTemperatures('h1.temperature', oldTemp, newTemp)
+
   
-  updateTemperatures: (unit) ->
-    mainTemp = $('h1.temperature').html().substring(0, s.length- 1)
-    newTemp = Weather::convertTemperature(unit, mainTemp)
-    $('h1.temperature').countTo
-        from: mainTemp,
+  updateTemperatures: (container, oldTemp, newTemp) ->
+    $(container).countTo
+        from: oldTemp,
         to: newTemp,
         speed: 700
     
