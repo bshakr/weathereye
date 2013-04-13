@@ -148,7 +148,9 @@
           console.log(oldTemp);
           newTemp = Weather.prototype.convertTemperature("f", oldTemp);
           console.log(newTemp);
-          Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
+          container = $('h1.temperature');
+          console.log(container);
+          Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
         }
       } else if (unit === 1) {
         if (existingUnit !== "c") {

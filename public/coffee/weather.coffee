@@ -120,7 +120,9 @@ class Weather
         console.log oldTemp
         newTemp = Weather::convertTemperature("f", oldTemp)
         console.log newTemp
-        Weather::updateTemperatures('h1.temperature', oldTemp, newTemp)
+        container = $('h1.temperature')
+        console.log container
+        Weather::updateTemperatures(container, oldTemp, newTemp)
     else if unit == 1
       if existingUnit != "c"
         localStorage.setItem "unit" , "c"
