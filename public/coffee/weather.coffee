@@ -128,17 +128,17 @@ class Weather
         $(ref).parent().addClass("current")
         oldTemp = $('h1.temperature').html().substring(0, s.length- 1)
         newTemp = Weather::convertTemperature("c", newTemp)
-        Weather::updateTemperatures('h1.temperature', oldTemp, newTemp)
+        container = $('h1.temperature')
+        Weather::updateTemperatures(container, oldTemp, newTemp)
     @.sidemenu.close()
     true
 
   
   updateTemperatures: (container, oldTemp, newTemp) ->
-    $(container).countTo
+    container.countTo
         from: oldTemp,
         to: newTemp,
         speed: 700
-    
     true
   convertTemperature: (unit, degree) ->
     if @unit == 'f'

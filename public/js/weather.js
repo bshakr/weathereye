@@ -135,7 +135,7 @@
     };
 
     Weather.prototype.changeTemperature = function(ref) {
-      var existingUnit, newTemp, oldTemp, unit;
+      var container, existingUnit, newTemp, oldTemp, unit;
       unit = $('ul#temperature li').index($(ref).parent());
       existingUnit = localStorage.getItem("unit");
       if (unit === 0) {
@@ -157,7 +157,8 @@
           $(ref).parent().addClass("current");
           oldTemp = $('h1.temperature').html().substring(0, s.length - 1);
           newTemp = Weather.prototype.convertTemperature("c", newTemp);
-          Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
+          container = $('h1.temperature');
+          Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
         }
       }
       this.sidemenu.close();
@@ -165,7 +166,7 @@
     };
 
     Weather.prototype.updateTemperatures = function(container, oldTemp, newTemp) {
-      $(container).countTo({
+      container.countTo({
         from: oldTemp,
         to: newTemp,
         speed: 700
