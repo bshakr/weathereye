@@ -157,7 +157,7 @@
       var mainTemp, newTemp;
       mainTemp = $('h1.temperature').html();
       newTemp = Weather.prototype.convertTemperature(unit, mainTemp);
-      $('.timer').countTo({
+      $('h1.temperature').countTo({
         from: mainTemp,
         to: newTemp,
         speed: 100

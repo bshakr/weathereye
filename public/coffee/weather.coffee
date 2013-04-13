@@ -124,7 +124,7 @@ class Weather
   updateTemperatures: (unit) ->
     mainTemp = $('h1.temperature').html()
     newTemp = Weather::convertTemperature(unit, mainTemp)
-    $('.timer').countTo
+    $('h1.temperature').countTo
         from: mainTemp,
         to: newTemp,
         speed: 100
