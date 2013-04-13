@@ -60,22 +60,26 @@
     };
 
     Weather.prototype.setupMainView = function(data, city) {
+      var unit;
       console.log("setting up main View");
       window.forecast = data;
+      unit = localStorage.getItem("unit");
       console.log(data);
-      $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '</span><span>°</span></h1><ul id="daily"></ul>');
+      $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' + Weather.prototype.convertTemperature(unit, data.currently.temperature) + '</span><span>°</span></h1><ul id="daily"></ul>');
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
       Weather.prototype.addDailyForecast(data.daily.data);
       return true;
     };
 
     Weather.prototype.addDailyForecast = function(daily) {
+      var unit;
       console.log("setting up daily forecast");
+      unit = localStorage.getItem("unit");
       return $.each(daily, function(index, value) {
         var max, min;
         if (__indexOf.call([1, 2, 3, 4, 5], index) >= 0) {
-          min = Weather.prototype.convertTemperature('c', this.temperatureMin);
-          max = Weather.prototype.convertTemperature('c', this.temperatureMax);
+          min = Weather.prototype.convertTemperature(unit, this.temperatureMin);
+          max = Weather.prototype.convertTemperature(unit, this.temperatureMax);
           return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(this.time) + '</div><div class="summary">' + Weather.prototype.getDailyTemperature(min, max) + '°</div></li>');
         }
       });

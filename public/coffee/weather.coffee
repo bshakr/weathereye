@@ -53,18 +53,20 @@ class Weather
   setupMainView: (data, city) ->
     console.log "setting up main View"
     window.forecast = data
+    unit = localStorage.getItem "unit"
     console.log(data)
-    $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '</span><span>°</span></h1><ul id="daily"></ul>')
+    $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' +  Weather::convertTemperature(unit, data.currently.temperature)  + '</span><span>°</span></h1><ul id="daily"></ul>')
     Weather::addIcon("weather-icon", data.currently.icon)
     Weather::addDailyForecast(data.daily.data)
     true
   
   addDailyForecast: (daily) ->
     console.log "setting up daily forecast"
+    unit = localStorage.getItem "unit"
     $.each(daily, (index, value) -> 
       if index in [1...6]
-        min = Weather::convertTemperature('c',@.temperatureMin)
-        max = Weather::convertTemperature('c',@.temperatureMax)
+        min = Weather::convertTemperature(unit,@.temperatureMin)
+        max = Weather::convertTemperature(unit,@.temperatureMax)
         $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+Weather::getDay(@.time)+'</div><div class="summary">' +Weather::getDailyTemperature(min, max)+'°</div></li>')
         )
   
