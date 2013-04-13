@@ -106,8 +106,30 @@ class Weather
     true
   
   changeTemperature: (ref) ->
-    window.alert($('ul#temperature li').index($(ref).parent()))
+    unit = $('ul#temperature li').index($(ref).parent())
+    existingUnit = localStorage.getItem "unit"
+    if unit == 0
+      if existingUnit != "f"
+        localStorage.setItem "unit" , "f"
+        $('ul#temperature li.current').removeClass("current")
+        $(ref).parent().addClass("current")
+        Weather::updateTemperatures("f")
+    else if unit == 1
+      if existingUnit != "c"
+        localStorage.setItem "unit" , "c"
+        $('ul#temperature li.current').removeClass("current")
+        $(ref).parent().addClass("current")
+        Weather::updateTemperatures("c")
   
+  updateTemperatures: (unit) ->
+    mainTemp = $('h1.temperature').html()
+    newTemp = Weather::convertTemperature(unit, mainTemp)
+    $('.timer').countTo
+        from: mainTemp,
+        to: newTemp,
+        speed: 100
+    
+    true
   convertTemperature: (unit, degree) ->
     if @unit == 'f'
       return Math.round( ( degree * 1.8 ) + 32 )

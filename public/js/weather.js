@@ -133,7 +133,36 @@
     };
 
     Weather.prototype.changeTemperature = function(ref) {
-      return window.alert($('ul#temperature li').index($(ref).parent()));
+      var existingUnit, unit;
+      unit = $('ul#temperature li').index($(ref).parent());
+      existingUnit = localStorage.getItem("unit");
+      if (unit === 0) {
+        if (existingUnit !== "f") {
+          localStorage.setItem("unit", "f");
+          $('ul#temperature li.current').removeClass("current");
+          $(ref).parent().addClass("current");
+          return Weather.prototype.updateTemperatures("f");
+        }
+      } else if (unit === 1) {
+        if (existingUnit !== "c") {
+          localStorage.setItem("unit", "c");
+          $('ul#temperature li.current').removeClass("current");
+          $(ref).parent().addClass("current");
+          return Weather.prototype.updateTemperatures("c");
+        }
+      }
+    };
+
+    Weather.prototype.updateTemperatures = function(unit) {
+      var mainTemp, newTemp;
+      mainTemp = $('h1.temperature').html();
+      newTemp = Weather.prototype.convertTemperature(unit, mainTemp);
+      $('.timer').countTo({
+        from: mainTemp,
+        to: newTemp,
+        speed: 100
+      });
+      return true;
     };
 
     Weather.prototype.convertTemperature = function(unit, degree) {
