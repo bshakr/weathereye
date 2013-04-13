@@ -55,7 +55,7 @@ class Weather
     window.forecast = data
     unit = localStorage.getItem "unit"
     console.log(data)
-    if unit = 'c'
+    if unit == 'c'
       temperature = Weather::convertTemperature(unit, data.currently.temperature)
     else
       temperature = data.currently.temperature
@@ -69,8 +69,12 @@ class Weather
     unit = localStorage.getItem "unit"
     $.each(daily, (index, value) -> 
       if index in [1...6]
-        min = Weather::convertTemperature(unit,@.temperatureMin)
-        max = Weather::convertTemperature(unit,@.temperatureMax)
+        if unit == 'c'
+          min = Weather::convertTemperature(unit,@.temperatureMin)
+          max = Weather::convertTemperature(unit,@.temperatureMax)
+        else
+          min = @.temperatureMin
+          max = @.temperatureMax
         $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+Weather::getDay(@.time)+'</div><div class="summary">' +Weather::getDailyTemperature(min, max)+'°</div></li>')
         )
   

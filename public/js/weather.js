@@ -65,7 +65,7 @@
       window.forecast = data;
       unit = localStorage.getItem("unit");
       console.log(data);
-      if (unit = 'c') {
+      if (unit === 'c') {
         temperature = Weather.prototype.convertTemperature(unit, data.currently.temperature);
       } else {
         temperature = data.currently.temperature;
@@ -83,8 +83,13 @@
       return $.each(daily, function(index, value) {
         var max, min;
         if (__indexOf.call([1, 2, 3, 4, 5], index) >= 0) {
-          min = Weather.prototype.convertTemperature(unit, this.temperatureMin);
-          max = Weather.prototype.convertTemperature(unit, this.temperatureMax);
+          if (unit === 'c') {
+            min = Weather.prototype.convertTemperature(unit, this.temperatureMin);
+            max = Weather.prototype.convertTemperature(unit, this.temperatureMax);
+          } else {
+            min = this.temperatureMin;
+            max = this.temperatureMax;
+          }
           return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(this.time) + '</div><div class="summary">' + Weather.prototype.getDailyTemperature(min, max) + '°</div></li>');
         }
       });
