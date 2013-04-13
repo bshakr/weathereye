@@ -129,7 +129,7 @@ class Weather
         $(ref).parent().addClass("current")
         oldTemp = $('span.temperature').html()
         console.log oldTemp
-        newTemp = Weather::convertTemperature("c", newTemp)
+        newTemp = Weather::convertTemperature("c", oldTemp)
         console.log newTemp
         container = $('span.temperature')
         Weather::updateTemperatures(container, oldTemp, newTemp)
