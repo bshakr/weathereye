@@ -168,6 +168,8 @@
     };
 
     Weather.prototype.updateTemperatures = function(container, oldTemp, newTemp) {
+      oldTemp = parseInt(oldTemp);
+      newTemp = parseInt(newTemp);
       container.countTo({
         from: oldTemp,
         to: newTemp,
