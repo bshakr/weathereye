@@ -128,7 +128,8 @@ class Weather
         localStorage.setItem "unit" , "c"
         $('ul#temperature li.current').removeClass("current")
         $(ref).parent().addClass("current")
-        oldTemp = $('h1.temperature').html().substring(0, s.length- 1)
+        oldTemp = $('h1.temperature').html()
+        oldTemp = oldTemp.substring(0, oldTemp.length- 1)
         newTemp = Weather::convertTemperature("c", newTemp)
         container = $('h1.temperature')
         Weather::updateTemperatures(container, oldTemp, newTemp)
