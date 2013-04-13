@@ -68,7 +68,7 @@
       if (unit === 'c') {
         temperature = Weather.prototype.convertTemperature(unit, data.currently.temperature);
       } else {
-        temperature = data.currently.temperature;
+        temperature = Math.round(data.currently.temperature);
       }
       $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' + temperature + '</span><span>°</span></h1><ul id="daily"></ul>');
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
@@ -87,8 +87,8 @@
             min = Weather.prototype.convertTemperature(unit, this.temperatureMin);
             max = Weather.prototype.convertTemperature(unit, this.temperatureMax);
           } else {
-            min = this.temperatureMin;
-            max = this.temperatureMax;
+            min = Math.round(this.temperatureMin);
+            max = Math.round(this.temperatureMax);
           }
           return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(this.time) + '</div><div class="summary">' + Weather.prototype.getDailyTemperature(min, max) + '°</div></li>');
         }

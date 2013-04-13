@@ -58,7 +58,7 @@ class Weather
     if unit == 'c'
       temperature = Weather::convertTemperature(unit, data.currently.temperature)
     else
-      temperature = data.currently.temperature
+      temperature =Math.round(data.currently.temperature)
     $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' +  temperature  + '</span><span>°</span></h1><ul id="daily"></ul>')
     Weather::addIcon("weather-icon", data.currently.icon)
     Weather::addDailyForecast(data.daily.data)
@@ -73,8 +73,8 @@ class Weather
           min = Weather::convertTemperature(unit,@.temperatureMin)
           max = Weather::convertTemperature(unit,@.temperatureMax)
         else
-          min = @.temperatureMin
-          max = @.temperatureMax
+          min = Math.round(@.temperatureMin)
+          max = Math.round(@.temperatureMax)
         $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+Weather::getDay(@.time)+'</div><div class="summary">' +Weather::getDailyTemperature(min, max)+'°</div></li>')
         )
   
