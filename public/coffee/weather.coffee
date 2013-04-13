@@ -58,7 +58,7 @@ class Weather
     if unit == 'c'
       temperature = Weather::convertTemperature(unit, data.currently.temperature)
     else
-      temperature =Math.round(data.currently.temperature)
+      temperature = Math.round(data.currently.temperature)
     $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' +  temperature  + '</span><span>°</span></h1><ul id="daily"></ul>')
     Weather::addIcon("weather-icon", data.currently.icon)
     Weather::addDailyForecast(data.daily.data)
