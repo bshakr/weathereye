@@ -122,7 +122,7 @@ class Weather
         Weather::updateTemperatures("c")
   
   updateTemperatures: (unit) ->
-    mainTemp = $('h1.temperature').html()
+    mainTemp = $('h1.temperature').html().substring(0, s.length- 1)
     newTemp = Weather::convertTemperature(unit, mainTemp)
     $('h1.temperature').countTo
         from: mainTemp,

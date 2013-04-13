@@ -155,7 +155,7 @@
 
     Weather.prototype.updateTemperatures = function(unit) {
       var mainTemp, newTemp;
-      mainTemp = $('h1.temperature').html();
+      mainTemp = $('h1.temperature').html().substring(0, s.length - 1);
       newTemp = Weather.prototype.convertTemperature(unit, mainTemp);
       $('h1.temperature').countTo({
         from: mainTemp,
