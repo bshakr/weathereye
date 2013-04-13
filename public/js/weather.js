@@ -157,7 +157,9 @@
           $('ul#temperature li.current').removeClass("current");
           $(ref).parent().addClass("current");
           oldTemp = $('span.temperature').html();
+          console.log(oldTemp);
           newTemp = Weather.prototype.convertTemperature("c", newTemp);
+          console.log(newTemp);
           container = $('span.temperature');
           Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
         }

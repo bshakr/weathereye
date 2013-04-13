@@ -128,7 +128,9 @@ class Weather
         $('ul#temperature li.current').removeClass("current")
         $(ref).parent().addClass("current")
         oldTemp = $('span.temperature').html()
+        console.log oldTemp
         newTemp = Weather::convertTemperature("c", newTemp)
+        console.log newTemp
         container = $('span.temperature')
         Weather::updateTemperatures(container, oldTemp, newTemp)
     @.sidemenu.close()
