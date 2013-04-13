@@ -60,12 +60,17 @@
     };
 
     Weather.prototype.setupMainView = function(data, city) {
-      var unit;
+      var temperature, unit;
       console.log("setting up main View");
       window.forecast = data;
       unit = localStorage.getItem("unit");
       console.log(data);
-      $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' + Weather.prototype.convertTemperature(unit, data.currently.temperature) + '</span><span>°</span></h1><ul id="daily"></ul>');
+      if (unit = 'c') {
+        temperature = Weather.prototype.convertTemperature(unit, data.currently.temperature);
+      } else {
+        temperature = data.currently.temperature;
+      }
+      $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' + temperature + '</span><span>°</span></h1><ul id="daily"></ul>');
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
       Weather.prototype.addDailyForecast(data.daily.data);
       return true;
