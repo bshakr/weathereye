@@ -117,7 +117,7 @@ class Weather
         $(ref).parent().addClass("current")
         oldTemp = $('h1.temperature').html()
         oldTemp = oldTemp.substring(0, oldTemp.length- 1)
-        newTemp = Weather::convertTemperature("f", mainTemp)
+        newTemp = Weather::convertTemperature("f", oldTemp)
         Weather::updateTemperatures('h1.temperature', oldTemp, newTemp)
     else if unit == 1
       if existingUnit != "c"

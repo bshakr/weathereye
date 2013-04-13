@@ -145,7 +145,7 @@
           $(ref).parent().addClass("current");
           oldTemp = $('h1.temperature').html();
           oldTemp = oldTemp.substring(0, oldTemp.length - 1);
-          newTemp = Weather.prototype.convertTemperature("f", mainTemp);
+          newTemp = Weather.prototype.convertTemperature("f", oldTemp);
           Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
         }
       } else if (unit === 1) {
