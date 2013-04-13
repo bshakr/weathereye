@@ -78,8 +78,25 @@ class Weather
     container = $('span.temperature')
     Weather::updateTemperatures(container, oldTemp, temperature)
     Weather::addIcon("weather-icon", data.currently.icon)
-    Weather::addDailyForecast(data.daily.data)
+    Weather::updateDailyForecast(data.daily.data)
     true
+  
+  updateDailyForecast: (daily) ->
+    console.log "updating up daily forecast"
+    unit = localStorage.getItem "unit"
+    $.each(daily, (index, value) -> 
+      if index in [1...6]
+        if unit == 'c'
+          min = Weather::convertTemperature(unit,@.temperatureMin)
+          max = Weather::convertTemperature(unit,@.temperatureMax)
+        else
+          min = Math.round(@.temperatureMin)
+          max = Math.round(@.temperatureMax)
+        oldTemp = $('ul#daily li:nth-child('+index+') div.summary span.daily-temperature').html()
+        newTemp = Weather::getDailyTemperature(min, max)
+        container = $('ul#daily li:nth-child('+index+') div.summary span.daily-temperature').html()
+        Weather::updateTemperatures(container, oldTemp, temperature)
+        )
   
   addDailyForecast: (daily) ->
     console.log "setting up daily forecast"
@@ -92,7 +109,7 @@ class Weather
         else
           min = Math.round(@.temperatureMin)
           max = Math.round(@.temperatureMax)
-        $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+Weather::getDay(@.time)+'</div><div class="summary">' +Weather::getDailyTemperature(min, max)+'°</div></li>')
+        $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">'+Weather::getDay(@.time)+'</div><div class="summary"><span class="daily-temperature">' +Weather::getDailyTemperature(min, max)+'</span><span>°</span></div></li>')
         )
   
   setupSideMenu: () ->

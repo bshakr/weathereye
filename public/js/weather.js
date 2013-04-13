@@ -92,8 +92,30 @@
       container = $('span.temperature');
       Weather.prototype.updateTemperatures(container, oldTemp, temperature);
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
-      Weather.prototype.addDailyForecast(data.daily.data);
+      Weather.prototype.updateDailyForecast(data.daily.data);
       return true;
+    };
+
+    Weather.prototype.updateDailyForecast = function(daily) {
+      var unit;
+      console.log("updating up daily forecast");
+      unit = localStorage.getItem("unit");
+      return $.each(daily, function(index, value) {
+        var container, max, min, newTemp, oldTemp;
+        if (__indexOf.call([1, 2, 3, 4, 5], index) >= 0) {
+          if (unit === 'c') {
+            min = Weather.prototype.convertTemperature(unit, this.temperatureMin);
+            max = Weather.prototype.convertTemperature(unit, this.temperatureMax);
+          } else {
+            min = Math.round(this.temperatureMin);
+            max = Math.round(this.temperatureMax);
+          }
+          oldTemp = $('ul#daily li:nth-child(' + index + ') div.summary span.daily-temperature').html();
+          newTemp = Weather.prototype.getDailyTemperature(min, max);
+          container = $('ul#daily li:nth-child(' + index + ') div.summary span.daily-temperature').html();
+          return Weather.prototype.updateTemperatures(container, oldTemp, temperature);
+        }
+      });
     };
 
     Weather.prototype.addDailyForecast = function(daily) {
@@ -110,7 +132,7 @@
             min = Math.round(this.temperatureMin);
             max = Math.round(this.temperatureMax);
           }
-          return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(this.time) + '</div><div class="summary">' + Weather.prototype.getDailyTemperature(min, max) + '°</div></li>');
+          return $('ul#daily').append('<li><canvas id="" height="30" width="30"></canvas><div class="day">' + Weather.prototype.getDay(this.time) + '</div><div class="summary"><span class="daily-temperature">' + Weather.prototype.getDailyTemperature(min, max) + '</span><span>°</span></div></li>');
         }
       });
     };
