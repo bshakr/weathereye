@@ -121,7 +121,6 @@
 
     Weather.prototype.changeCity = function(ref) {
       var callback, city, cityID, latitude, longitude;
-      this.sidemenu.close();
       cityID = $('ul#cities li').index($(ref).parent()) + 1;
       city = localStorage.getItem('city' + cityID);
       latitude = localStorage.getItem('latitude' + cityID);
@@ -131,12 +130,12 @@
         return true;
       };
       Weather.prototype.checkForecast(latitude, longitude, callback);
+      this.sidemenu.close();
       return true;
     };
 
     Weather.prototype.changeTemperature = function(ref) {
       var existingUnit, newTemp, oldTemp, unit;
-      this.sidemenu.close();
       unit = $('ul#temperature li').index($(ref).parent());
       existingUnit = localStorage.getItem("unit");
       if (unit === 0) {
@@ -146,7 +145,7 @@
           $(ref).parent().addClass("current");
           oldTemp = $('h1.temperature').html().substring(0, s.length - 1);
           newTemp = Weather.prototype.convertTemperature("f", mainTemp);
-          return Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
+          Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
         }
       } else if (unit === 1) {
         if (existingUnit !== "c") {
@@ -155,9 +154,11 @@
           $(ref).parent().addClass("current");
           oldTemp = $('h1.temperature').html().substring(0, s.length - 1);
           newTemp = Weather.prototype.convertTemperature("c", mainTemp);
-          return Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
+          Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
         }
       }
+      this.sidemenu.close();
+      return true;
     };
 
     Weather.prototype.updateTemperatures = function(container, oldTemp, newTemp) {

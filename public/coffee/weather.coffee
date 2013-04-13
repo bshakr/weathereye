@@ -96,7 +96,6 @@ class Weather
     true
   
   changeCity: (ref) ->
-    @.sidemenu.close()
     cityID = $('ul#cities li').index($(ref).parent()) + 1
     city = localStorage.getItem('city'+cityID)
     latitude = localStorage.getItem('latitude'+ cityID)
@@ -105,10 +104,11 @@ class Weather
       Weather::setupMainView(data, city)
       true
     Weather::checkForecast(latitude, longitude, callback)
+    @.sidemenu.close()
     true
   
   changeTemperature: (ref) ->
-    @.sidemenu.close()
+    
     unit = $('ul#temperature li').index($(ref).parent())
     existingUnit = localStorage.getItem "unit"
     if unit == 0
@@ -127,6 +127,8 @@ class Weather
         oldTemp = $('h1.temperature').html().substring(0, s.length- 1)
         newTemp = Weather::convertTemperature("c", mainTemp)
         Weather::updateTemperatures('h1.temperature', oldTemp, newTemp)
+    @.sidemenu.close()
+    true
 
   
   updateTemperatures: (container, oldTemp, newTemp) ->
