@@ -54,7 +54,7 @@ class Weather
     console.log "setting up main View"
     window.forecast = data
     console.log(data)
-    $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '°</h1><ul id="daily"></ul>')
+    $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' +  Weather::convertTemperature('c', data.currently.temperature)  + '</span><span>°</span></h1><ul id="daily"></ul>')
     Weather::addIcon("weather-icon", data.currently.icon)
     Weather::addDailyForecast(data.daily.data)
     true
@@ -115,12 +115,11 @@ class Weather
         localStorage.setItem "unit" , "f"
         $('ul#temperature li.current').removeClass("current")
         $(ref).parent().addClass("current")
-        oldTemp = $('h1.temperature').html()
-        oldTemp = oldTemp.substring(0, oldTemp.length- 1)
+        oldTemp = $('span.temperature').html()
         console.log oldTemp
         newTemp = Weather::convertTemperature("f", oldTemp)
         console.log newTemp
-        container = $('h1.temperature')
+        container = $('span.temperature')
         console.log container
         Weather::updateTemperatures(container, oldTemp, newTemp)
     else if unit == 1
@@ -128,10 +127,9 @@ class Weather
         localStorage.setItem "unit" , "c"
         $('ul#temperature li.current').removeClass("current")
         $(ref).parent().addClass("current")
-        oldTemp = $('h1.temperature').html()
-        oldTemp = oldTemp.substring(0, oldTemp.length- 1)
+        oldTemp = $('span.temperature').html()
         newTemp = Weather::convertTemperature("c", newTemp)
-        container = $('h1.temperature')
+        container = $('span.temperature')
         Weather::updateTemperatures(container, oldTemp, newTemp)
     @.sidemenu.close()
     true

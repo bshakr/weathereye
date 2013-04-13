@@ -63,7 +63,7 @@
       console.log("setting up main View");
       window.forecast = data;
       console.log(data);
-      $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1 class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '°</h1><ul id="daily"></ul>');
+      $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' + Weather.prototype.convertTemperature('c', data.currently.temperature) + '</span><span>°</span></h1><ul id="daily"></ul>');
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
       Weather.prototype.addDailyForecast(data.daily.data);
       return true;
@@ -143,12 +143,11 @@
           localStorage.setItem("unit", "f");
           $('ul#temperature li.current').removeClass("current");
           $(ref).parent().addClass("current");
-          oldTemp = $('h1.temperature').html();
-          oldTemp = oldTemp.substring(0, oldTemp.length - 1);
+          oldTemp = $('span.temperature').html();
           console.log(oldTemp);
           newTemp = Weather.prototype.convertTemperature("f", oldTemp);
           console.log(newTemp);
-          container = $('h1.temperature');
+          container = $('span.temperature');
           console.log(container);
           Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
         }
@@ -157,10 +156,9 @@
           localStorage.setItem("unit", "c");
           $('ul#temperature li.current').removeClass("current");
           $(ref).parent().addClass("current");
-          oldTemp = $('h1.temperature').html();
-          oldTemp = oldTemp.substring(0, oldTemp.length - 1);
+          oldTemp = $('span.temperature').html();
           newTemp = Weather.prototype.convertTemperature("c", newTemp);
-          container = $('h1.temperature');
+          container = $('span.temperature');
           Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
         }
       }
