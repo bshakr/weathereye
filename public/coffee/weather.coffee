@@ -95,7 +95,7 @@ class Weather
         oldTemp = $('ul#daily li:nth-child('+index+') div.summary span.daily-temperature').html()
         newTemp = Weather::getDailyTemperature(min, max)
         container = $('ul#daily li:nth-child('+index+') div.summary span.daily-temperature').html()
-        Weather::updateTemperatures(container, oldTemp, temperature)
+        Weather::updateTemperatures(container, oldTemp, newTemp)
         )
   
   addDailyForecast: (daily) ->
