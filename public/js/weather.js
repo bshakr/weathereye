@@ -82,6 +82,7 @@
     };
 
     Weather.prototype.setupSideMenu = function() {
+      var self;
       console.log("setting up sidemenu");
       $('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">NEW YORK</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>');
       this.sidemenu = new SlidingView('sidebar', 'mainView');
@@ -94,6 +95,7 @@
         shadingIntensity: 7
       });
       this.sidemenu.sidebar.oriDomi('accordion', 90);
+      self = this;
       this.sidemenu.sidebar.bind("slidingViewProgress", function(event, data) {
         var af, angle, fudge, half;
         fudge = 1;
@@ -107,10 +109,10 @@
         angle = 90 - (90 * (data.current / data.max));
         af = angle + fudge;
         if (af > 0) {
-          this.sidemenu.sidebar.oriDomi('restoreOriDomi');
-          this.sidemenu.sidebar.oriDomi('accordion', af);
+          self.sidemenu.sidebar.oriDomi('restoreOriDomi');
+          self.sidemenu.sidebar.oriDomi('accordion', af);
         } else {
-          this.sidemenu.sidebar.oriDomi('restoreDOM');
+          self.sidemenu.sidebar.oriDomi('restoreDOM');
         }
         return true;
       });

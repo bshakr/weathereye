@@ -75,6 +75,7 @@ class Weather
     @sidemenu.sidebarWidth = 220
     @sidemenu.sidebar.oriDomi({ hPanels: 1, vPanels: 2, speed:1, perspective:800, shadingIntensity:7 })
     @sidemenu.sidebar.oriDomi( 'accordion', 90 )
+    self = @
     @sidemenu.sidebar.bind( "slidingViewProgress", (event, data) ->
 	    fudge = 1
 	    half = data.max/2
@@ -86,10 +87,10 @@ class Weather
 	    angle = 90 - ( ( 90 * ( data.current/ data.max)))
 	    af = angle + fudge
 	    if af > 0
-        @sidemenu.sidebar.oriDomi 'restoreOriDomi' 
-        @sidemenu.sidebar.oriDomi 'accordion', af 
+        self.sidemenu.sidebar.oriDomi 'restoreOriDomi' 
+        self.sidemenu.sidebar.oriDomi 'accordion', af 
 	    else
-        @sidemenu.sidebar.oriDomi 'restoreDOM' 
+        self.sidemenu.sidebar.oriDomi 'restoreDOM' 
       true
     )
     true
