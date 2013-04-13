@@ -127,7 +127,7 @@ class Weather
     $('h1.temperature').countTo
         from: mainTemp,
         to: newTemp,
-        speed: 100
+        speed: 700
     
     true
   convertTemperature: (unit, degree) ->
