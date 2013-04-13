@@ -70,7 +70,27 @@
       } else {
         temperature = Math.round(data.currently.temperature);
       }
-      $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' + temperature + '</span><span>°</span></h1><ul id="daily"></ul>');
+      $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2 id="theCity">' + city.toUpperCase() + '</h2><h1><span class="temperature">' + temperature + '</span><span>°</span></h1><ul id="daily"></ul>');
+      Weather.prototype.addIcon("weather-icon", data.currently.icon);
+      Weather.prototype.addDailyForecast(data.daily.data);
+      return true;
+    };
+
+    Weather.prototype.updateMainView = function(data, city) {
+      var container, oldTemp, temperature, unit;
+      console.log("updating up main View");
+      window.forecast = data;
+      unit = localStorage.getItem("unit");
+      console.log(data);
+      if (unit === 'c') {
+        temperature = Weather.prototype.convertTemperature(unit, data.currently.temperature);
+      } else {
+        temperature = Math.round(data.currently.temperature);
+      }
+      $('#theCity').html(city.toUpperCase());
+      oldTemp = $('span.temperature').html();
+      container = $('span.temperature');
+      Weather.prototype.updateTemperatures(container, oldTemp, temperature);
       Weather.prototype.addIcon("weather-icon", data.currently.icon);
       Weather.prototype.addDailyForecast(data.daily.data);
       return true;
@@ -140,7 +160,7 @@
       latitude = localStorage.getItem('latitude' + cityID);
       longitude = localStorage.getItem('longitude' + cityID);
       callback = function(data) {
-        Weather.prototype.setupMainView(data, city);
+        Weather.prototype.updateMainView(data, city);
         return true;
       };
       Weather.prototype.checkForecast(latitude, longitude, callback);

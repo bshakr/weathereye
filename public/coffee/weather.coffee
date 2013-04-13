@@ -59,7 +59,24 @@ class Weather
       temperature = Weather::convertTemperature(unit, data.currently.temperature)
     else
       temperature = Math.round(data.currently.temperature)
-    $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2>' + city.toUpperCase() + '</h2><h1><span class="temperature">' +  temperature  + '</span><span>°</span></h1><ul id="daily"></ul>')
+    $('#mainView').html('<canvas id="weather-icon" width="140" height="140"></canvas><h2 id="theCity">' + city.toUpperCase() + '</h2><h1><span class="temperature">' +  temperature  + '</span><span>°</span></h1><ul id="daily"></ul>')
+    Weather::addIcon("weather-icon", data.currently.icon)
+    Weather::addDailyForecast(data.daily.data)
+    true
+  
+  updateMainView: (data, city) ->
+    console.log "updating up main View"
+    window.forecast = data
+    unit = localStorage.getItem "unit"
+    console.log(data)
+    if unit == 'c'
+      temperature = Weather::convertTemperature(unit, data.currently.temperature)
+    else
+      temperature = Math.round(data.currently.temperature)
+    $('#theCity').html(city.toUpperCase())
+    oldTemp = $('span.temperature').html()
+    container = $('span.temperature')
+    Weather::updateTemperatures(container, oldTemp, temperature)
     Weather::addIcon("weather-icon", data.currently.icon)
     Weather::addDailyForecast(data.daily.data)
     true
@@ -111,7 +128,7 @@ class Weather
     latitude = localStorage.getItem('latitude'+ cityID)
     longitude = localStorage.getItem('longitude'+cityID)
     callback = (data) ->
-      Weather::setupMainView(data, city)
+      Weather::updateMainView(data, city)
       true
     Weather::checkForecast(latitude, longitude, callback)
     @.sidemenu.close()
