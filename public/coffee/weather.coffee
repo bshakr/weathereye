@@ -186,7 +186,7 @@ class Weather
         $('ul#daily li').each((index, element) ->
           container = $('div.summary span.daily-temperature', element)
           oldTemp = container.html()
-          newTemp = Weather::convertTemperature("f", oldTemp)
+          newTemp = Weather::convertTemperature("c", oldTemp)
           Weather::updateTemperatures(container, oldTemp, newTemp)
         )
     @.sidemenu.close()

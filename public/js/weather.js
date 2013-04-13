@@ -227,7 +227,7 @@
           $('ul#daily li').each(function(index, element) {
             container = $('div.summary span.daily-temperature', element);
             oldTemp = container.html();
-            newTemp = Weather.prototype.convertTemperature("f", oldTemp);
+            newTemp = Weather.prototype.convertTemperature("c", oldTemp);
             return Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
           });
         }
