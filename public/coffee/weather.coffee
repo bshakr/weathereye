@@ -143,7 +143,7 @@ class Weather
         speed: 700
     true
   convertTemperature: (unit, degree) ->
-    if @unit == 'f'
+    if unit == 'f'
       return Math.round( ( degree * 1.8 ) + 32 )
     else
       return Math.round( ( degree - 32 ) / 1.8 )

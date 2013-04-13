@@ -177,7 +177,7 @@
     };
 
     Weather.prototype.convertTemperature = function(unit, degree) {
-      if (this.unit === 'f') {
+      if (unit === 'f') {
         return Math.round((degree * 1.8) + 32);
       } else {
         return Math.round((degree - 32) / 1.8);
