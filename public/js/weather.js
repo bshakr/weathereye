@@ -206,6 +206,12 @@
           container = $('span.temperature');
           console.log(container);
           Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
+          $('ul#daily li').each(function(index, element) {
+            container = $('div.summary span.daily-temperature', element);
+            oldTemp = container.html();
+            newTemp = Weather.prototype.convertTemperature("f", oldTemp);
+            return Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
+          });
         }
       } else if (unit === 1) {
         if (existingUnit !== "c") {
@@ -218,6 +224,12 @@
           console.log(newTemp);
           container = $('span.temperature');
           Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
+          $('ul#daily li').each(function(index, element) {
+            container = $('div.summary span.daily-temperature', element);
+            oldTemp = container.html();
+            newTemp = Weather.prototype.convertTemperature("f", oldTemp);
+            return Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
+          });
         }
       }
       this.sidemenu.close();

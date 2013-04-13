@@ -166,6 +166,12 @@ class Weather
         container = $('span.temperature')
         console.log container
         Weather::updateTemperatures(container, oldTemp, newTemp)
+        $('ul#daily li').each((index, element) ->
+          container = $('div.summary span.daily-temperature', element)
+          oldTemp = container.html()
+          newTemp = Weather::convertTemperature("f", oldTemp)
+          Weather::updateTemperatures(container, oldTemp, newTemp)
+        )
     else if unit == 1
       if existingUnit != "c"
         localStorage.setItem "unit" , "c"
@@ -177,6 +183,12 @@ class Weather
         console.log newTemp
         container = $('span.temperature')
         Weather::updateTemperatures(container, oldTemp, newTemp)
+        $('ul#daily li').each((index, element) ->
+          container = $('div.summary span.daily-temperature', element)
+          oldTemp = container.html()
+          newTemp = Weather::convertTemperature("f", oldTemp)
+          Weather::updateTemperatures(container, oldTemp, newTemp)
+        )
     @.sidemenu.close()
     true
 
