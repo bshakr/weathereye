@@ -145,7 +145,9 @@
           $(ref).parent().addClass("current");
           oldTemp = $('h1.temperature').html();
           oldTemp = oldTemp.substring(0, oldTemp.length - 1);
+          console.log(oldTemp);
           newTemp = Weather.prototype.convertTemperature("f", oldTemp);
+          console.log(newTemp);
           Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
         }
       } else if (unit === 1) {
@@ -154,7 +156,7 @@
           $('ul#temperature li.current').removeClass("current");
           $(ref).parent().addClass("current");
           oldTemp = $('h1.temperature').html().substring(0, s.length - 1);
-          newTemp = Weather.prototype.convertTemperature("c", mainTemp);
+          newTemp = Weather.prototype.convertTemperature("c", newTemp);
           Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
         }
       }
