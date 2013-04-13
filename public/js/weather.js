@@ -112,7 +112,7 @@
           }
           oldTemp = $('ul#daily li:nth-child(' + index + ') div.summary span.daily-temperature').html();
           newTemp = Weather.prototype.getDailyTemperature(min, max);
-          container = $('ul#daily li:nth-child(' + index + ') div.summary span.daily-temperature').html();
+          container = $('ul#daily li:nth-child(' + index + ') div.summary span.daily-temperature');
           return Weather.prototype.updateTemperatures(container, oldTemp, newTemp);
         }
       });

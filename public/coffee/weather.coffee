@@ -94,7 +94,7 @@ class Weather
           max = Math.round(@.temperatureMax)
         oldTemp = $('ul#daily li:nth-child('+index+') div.summary span.daily-temperature').html()
         newTemp = Weather::getDailyTemperature(min, max)
-        container = $('ul#daily li:nth-child('+index+') div.summary span.daily-temperature').html()
+        container = $('ul#daily li:nth-child('+index+') div.summary span.daily-temperature')
         Weather::updateTemperatures(container, oldTemp, newTemp)
         )
   
