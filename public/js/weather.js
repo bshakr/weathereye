@@ -143,7 +143,8 @@
           localStorage.setItem("unit", "f");
           $('ul#temperature li.current').removeClass("current");
           $(ref).parent().addClass("current");
-          oldTemp = $('h1.temperature').html().substring(0, s.length - 1);
+          oldTemp = $('h1.temperature').html();
+          oldTemp = oldTemp.substring(0, oldTemp.length - 1);
           newTemp = Weather.prototype.convertTemperature("f", mainTemp);
           Weather.prototype.updateTemperatures('h1.temperature', oldTemp, newTemp);
         }
