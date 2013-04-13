@@ -96,6 +96,7 @@ class Weather
     true
   
   changeCity: (ref) ->
+    @.sidemenu.close()
     cityID = $('ul#cities li').index($(ref).parent()) + 1
     city = localStorage.getItem('city'+cityID)
     latitude = localStorage.getItem('latitude'+ cityID)
@@ -107,6 +108,7 @@ class Weather
     true
   
   changeTemperature: (ref) ->
+    @.sidemenu.close()
     unit = $('ul#temperature li').index($(ref).parent())
     existingUnit = localStorage.getItem "unit"
     if unit == 0

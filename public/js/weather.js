@@ -121,6 +121,7 @@
 
     Weather.prototype.changeCity = function(ref) {
       var callback, city, cityID, latitude, longitude;
+      this.sidemenu.close();
       cityID = $('ul#cities li').index($(ref).parent()) + 1;
       city = localStorage.getItem('city' + cityID);
       latitude = localStorage.getItem('latitude' + cityID);
@@ -135,6 +136,7 @@
 
     Weather.prototype.changeTemperature = function(ref) {
       var existingUnit, newTemp, oldTemp, unit;
+      this.sidemenu.close();
       unit = $('ul#temperature li').index($(ref).parent());
       existingUnit = localStorage.getItem("unit");
       if (unit === 0) {
