@@ -25,7 +25,7 @@ class Weather
     if localStorage.getItem("initialized") != "true"
       localStorage.setItem "initialized" , "true"
       localStorage.setItem "unit" , "c"
-      localStorage.setItem "cityCount", 3
+      localStorage.setItem "cityCount", 4
 
       localStorage.setItem "city1" , "Canterbury"
       localStorage.setItem "latitude1" , "51.275970"
@@ -145,7 +145,7 @@ class Weather
   setupSidebarCities: () ->
     $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>')
     cityCount = localStorage.getItem 'cityCount'
-    for count in [1...cityCount] by 1
+    for count in [1...cityCount + 1] by 1
       city = localStorage.getItem 'city' + count
       $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">'+ city+'</a></li>')
       true

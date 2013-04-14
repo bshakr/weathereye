@@ -36,7 +36,7 @@
       if (localStorage.getItem("initialized") !== "true") {
         localStorage.setItem("initialized", "true");
         localStorage.setItem("unit", "c");
-        localStorage.setItem("cityCount", 3);
+        localStorage.setItem("cityCount", 4);
         localStorage.setItem("city1", "Canterbury");
         localStorage.setItem("latitude1", "51.275970");
         localStorage.setItem("longitude1", "1.075610");
@@ -178,10 +178,10 @@
     };
 
     Weather.prototype.setupSidebarCities = function() {
-      var city, cityCount, count, _i;
+      var city, cityCount, count, _i, _ref;
       $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>');
       cityCount = localStorage.getItem('cityCount');
-      for (count = _i = 1; _i < cityCount; count = _i += 1) {
+      for (count = _i = 1, _ref = cityCount + 1; _i < _ref; count = _i += 1) {
         city = localStorage.getItem('city' + count);
         $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">' + city + '</a></li>');
         true;
