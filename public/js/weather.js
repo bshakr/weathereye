@@ -223,7 +223,7 @@
       callback = function(data) {
         var newCityCount, oldCityCount;
         oldCityCount = localStorage.getItem('cityCount');
-        newCityCount = oldCityCount + 1;
+        newCityCount = parseInt(oldCityCount) + 1;
         localStorage.setItem("cityCount", newCityCount);
         localStorage.setItem("city" + newCityCount, data.city);
         localStorage.setItem("latitude" + newCityCount, data.latitude);
