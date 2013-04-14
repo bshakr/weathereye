@@ -19,8 +19,8 @@ get '/find/city/:city' do
   document = Nokogiri::XML(response.body)
   latitude = document.xpath('//places/place/centroid/latitude').text
   longitude = document.xpath('//places/place/centroid/longitude').text
-  puts "latitude: " + latitude
-  puts "longitude: " + longitude
+  puts "latitude: #{latitude}"
+  puts "longitude: #{longitude}"
   {:latitude => latitude, :longitude => longitude}.to_json
 end
 
