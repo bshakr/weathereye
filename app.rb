@@ -14,15 +14,11 @@ end
 get '/find/city/:city' do
   yahoo_appid = 'pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-'
   city_url = "http://where.yahooapis.com/v1/places.q('#{params[:city]}')?appid=#{yahoo_appid}"
-  puts "City URL: #{city_url}"
   connection = Faraday.new
   response = connection.get(city_url)
   document = Nokogiri::HTML(response.body)
-  puts "Nokogiri Document: #{document}"
   latitude = document.xpath('//places/place/centroid/latitude').text
   longitude = document.xpath('//places/place/centroid/longitude').text
-  puts "latitude: #{latitude}"
-  puts "longitude: #{longitude}"
   {:latitude => latitude, :longitude => longitude}.to_json
 end
 
