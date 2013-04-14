@@ -17,7 +17,7 @@ get '/find/city/:city' do
   puts "City URL: #{city_url}"
   connection = Faraday.new
   response = connection.get(city_url)
-  document = Nokogiri::XML(response.body)
+  document = Nokogiri::HTML(response.body)
   puts "Nokogiri Document: #{document}"
   latitude = document.xpath('//places/place/centroid/latitude').text
   longitude = document.xpath('//places/place/centroid/longitude').text
