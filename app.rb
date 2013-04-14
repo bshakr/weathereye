@@ -11,7 +11,7 @@ end
 
 
 #get city location
-get 'forecast/:city' do
+get '/find/city/:city' do
   yahoo_appid = 'pmQ_VnzV34FddFT6do_XVxcjzkrjmeKzNpJjLP1MqfPSEN6yCN0vunwBt8QbZYWEc65EPzD6o8VVmDYXTQZbPY0DkXSGUO4-'
   city_url = "http://where.yahooapis.com/v1/places.q('#{params[:city]}')?appid=#{yahoo_appid}"
   connection = Faraday.new
