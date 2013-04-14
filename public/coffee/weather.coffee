@@ -115,7 +115,6 @@ class Weather
   
   setupSideMenu: () ->
     console.log "setting up sidemenu"
-    #$('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">NEW YORK</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>')
     Weather::setupSidemenuCities()
     $('#sidebar').append('<h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>')
     @sidemenu = new SlidingView( 'sidebar', 'mainView' )
@@ -143,7 +142,7 @@ class Weather
     true
   
   setupSidemenuCities: () ->
-    $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>')
+    $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><input type="text" id="addCity"></input>')
     cityCount = localStorage.getItem 'cityCount'
     for count in [0...cityCount] by 1
       cityIndex = count + 1
@@ -287,6 +286,8 @@ class Weather
 window.weather = new Weather
 
 jQuery ->
-  window.weather.init()
-
+  $("#addCity").keyup((event) ->
+    if event.keyCode == 13
+      Weather::addCity($('#addCity').val())
+  )
 
