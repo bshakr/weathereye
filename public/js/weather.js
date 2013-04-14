@@ -181,7 +181,6 @@
       var city, cityCount, count, _i;
       $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>');
       cityCount = localStorage.getItem('cityCount');
-      cityCount += 1;
       for (count = _i = 1; _i < cityCount; count = _i += 1) {
         city = localStorage.getItem('city' + count);
         $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">' + city + '</a></li>');
