@@ -5,7 +5,9 @@
 
   Weather = (function() {
 
-    function Weather() {
+    function Weather() {}
+
+    Weather.prototype.init = function() {
       var callback;
       console.log("initializing");
       if (!window.navigator.standalone) {
@@ -25,8 +27,8 @@
         };
         this.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback);
       }
-      true;
-    }
+      return true;
+    };
 
     Weather.prototype.setupCache = function() {
       console.log("setting up cache");
@@ -359,5 +361,9 @@
   })();
 
   window.weather = new Weather;
+
+  jQuery(function() {
+    return window.weather.init();
+  });
 
 }).call(this);
