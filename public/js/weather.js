@@ -384,10 +384,11 @@
 
   jQuery(function() {
     window.weather.init();
-    return $("#addCity").live('keydown', function(event) {
+    return $("#addCity").keydown(function(event) {
       var city;
       if (event.which === 13) {
         event.preventDefault();
+        $('#addCity').blur();
         city = $('#addCity').val();
         console.log("adding city trigger with value " + val());
         return Weather.prototype.addCity($('#addCity').val());
