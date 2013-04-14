@@ -25,6 +25,7 @@ class Weather
     if localStorage.getItem("initialized") != "true"
       localStorage.setItem "initialized" , "true"
       localStorage.setItem "unit" , "c"
+      localStorage.setItem "cityCount", 3
 
       localStorage.setItem "city1" , "Canterbury"
       localStorage.setItem "latitude1" , "51.275970"
