@@ -382,8 +382,12 @@
   window.weather = new Weather;
 
   jQuery(function() {
+    window.weather.init();
     return $("#addCity").keyup(function(event) {
+      var city;
       if (event.keyCode === 13) {
+        city = $('#addCity').val();
+        console.log("adding city trigger with value " + val());
         return Weather.prototype.addCity($('#addCity').val());
       }
     });

@@ -286,8 +286,11 @@ class Weather
 window.weather = new Weather
 
 jQuery ->
+  window.weather.init()
   $("#addCity").keyup((event) ->
     if event.keyCode == 13
+      city = $('#addCity').val()
+      console.log "adding city trigger with value " + val()
       Weather::addCity($('#addCity').val())
   )
 
