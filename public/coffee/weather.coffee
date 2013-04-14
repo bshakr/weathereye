@@ -143,6 +143,15 @@ class Weather
   
   setupSidemenuCities: () ->
     $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><input type="text" id="addCity"></input>')
+    $("#addCity").keydown((event) ->
+      if event.which == 13
+        city = $('#addCity').val()
+        console.log "adding city trigger with value " + val()
+        event.preventDefault()
+        $('#addCity').blur()
+        Weather::addCity($('#addCity').val())
+        true
+    )
     cityCount = localStorage.getItem 'cityCount'
     for count in [0...cityCount] by 1
       cityIndex = count + 1
@@ -288,14 +297,4 @@ window.weather = new Weather
 
 jQuery ->
   window.weather.init()
-  $("#addCity").keydown((event) ->
-    if event.which == 13
-      city = $('#addCity').val()
-      console.log "adding city trigger with value " + val()
-      event.preventDefault()
-      $('#addCity').blur()
-      Weather::addCity($('#addCity').val())
-      true
-  )
   true
-

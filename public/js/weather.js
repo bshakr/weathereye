@@ -180,6 +180,17 @@
     Weather.prototype.setupSidemenuCities = function() {
       var city, cityCount, cityIndex, count, _i;
       $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><input type="text" id="addCity"></input>');
+      $("#addCity").keydown(function(event) {
+        var city;
+        if (event.which === 13) {
+          city = $('#addCity').val();
+          console.log("adding city trigger with value " + val());
+          event.preventDefault();
+          $('#addCity').blur();
+          Weather.prototype.addCity($('#addCity').val());
+          return true;
+        }
+      });
       cityCount = localStorage.getItem('cityCount');
       for (count = _i = 0; _i < cityCount; count = _i += 1) {
         cityIndex = count + 1;
@@ -384,17 +395,6 @@
 
   jQuery(function() {
     window.weather.init();
-    $("#addCity").keydown(function(event) {
-      var city;
-      if (event.which === 13) {
-        city = $('#addCity').val();
-        console.log("adding city trigger with value " + val());
-        event.preventDefault();
-        $('#addCity').blur();
-        Weather.prototype.addCity($('#addCity').val());
-        return true;
-      }
-    });
     return true;
   });
 
