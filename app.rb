@@ -19,7 +19,8 @@ get '/find/city/:city' do
   document = Nokogiri::HTML(response.body)
   latitude = document.xpath('//places/place/centroid/latitude').text
   longitude = document.xpath('//places/place/centroid/longitude').text
-  {:latitude => latitude, :longitude => longitude}.to_json
+  city = document.xpath('//places/place/name').text
+  {:city => city, :latitude => latitude, :longitude => longitude}.to_json
 end
 
 #get weather data
