@@ -179,7 +179,7 @@
 
     Weather.prototype.setupSidemenuCities = function() {
       var city, cityCount, cityIndex, count, _i;
-      $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><form onsubmit="weather.addCity()"><input type="text" id="addCity"></input></form>');
+      $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><input type="text" id="addCity"></input>');
       cityCount = localStorage.getItem('cityCount');
       for (count = _i = 0; _i < cityCount; count = _i += 1) {
         cityIndex = count + 1;
@@ -384,9 +384,10 @@
 
   jQuery(function() {
     window.weather.init();
-    return $("#addCity").keyup(function(event) {
+    return $("#addCity").live('keydown', function(event) {
       var city;
-      if (event.keyCode === 13) {
+      if (event.which === 13) {
+        event.preventDefault();
         city = $('#addCity').val();
         console.log("adding city trigger with value " + val());
         return Weather.prototype.addCity($('#addCity').val());
