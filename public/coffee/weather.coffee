@@ -114,7 +114,9 @@ class Weather
   
   setupSideMenu: () ->
     console.log "setting up sidemenu"
-    $('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">NEW YORK</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>')
+    #$('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">NEW YORK</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>')
+    Weather::setupSidebarCities()
+    $('#sidebar').append('<h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>')
     @sidemenu = new SlidingView( 'sidebar', 'mainView' )
     @sidemenu.sidebarWidth = 220
     @sidemenu.sidebar.oriDomi({ hPanels: 1, vPanels: 2, speed:1, perspective:800, shadingIntensity:7 })
@@ -139,6 +141,15 @@ class Weather
     )
     true
   
+  setupSidebarCities: () ->
+    $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>')
+    cityCount = localStorage.getItem 'cityCount'
+    for count in [1...cityCount] by 1
+      city = localStorage.getItem 'city' + count
+      $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">'+ city+'</a></li>')
+      true
+    true
+  
   changeCity: (ref) ->
     cityID = $('ul#cities li').index($(ref).parent()) + 1
     city = localStorage.getItem('city'+cityID)
@@ -151,6 +162,15 @@ class Weather
     @.sidemenu.close()
     true
   
+  addCity: (ref) ->
+    callback = (data) ->
+      oldCityCount = localStorage.getItem 'cityCount'
+      newCityCount = oldCityCount + 1
+      localStorage.setItem "cityCount", newCityCount
+      localStorage.setItem "city" + newCityCount, data.city
+      localStorage.setItem "latitude" + newCityCount, data.latitude
+      localStorage.setItem "longitude" + newCityCount, data.longitude
+    
   changeTemperature: (ref) ->
     unit = $('ul#temperature li').index($(ref).parent())
     existingUnit = localStorage.getItem "unit"

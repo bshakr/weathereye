@@ -140,7 +140,8 @@
     Weather.prototype.setupSideMenu = function() {
       var self;
       console.log("setting up sidemenu");
-      $('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">NEW YORK</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>');
+      Weather.prototype.setupSidebarCities();
+      $('#sidebar').append('<h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>');
       this.sidemenu = new SlidingView('sidebar', 'mainView');
       this.sidemenu.sidebarWidth = 220;
       this.sidemenu.sidebar.oriDomi({
@@ -175,6 +176,18 @@
       return true;
     };
 
+    Weather.prototype.setupSidebarCities = function() {
+      var city, cityCount, count, _i;
+      $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>');
+      cityCount = localStorage.getItem('cityCount');
+      for (count = _i = 1; _i < cityCount; count = _i += 1) {
+        city = localStorage.getItem('city' + count);
+        $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">' + city + '</a></li>');
+        true;
+      }
+      return true;
+    };
+
     Weather.prototype.changeCity = function(ref) {
       var callback, city, cityID, latitude, longitude;
       cityID = $('ul#cities li').index($(ref).parent()) + 1;
@@ -188,6 +201,19 @@
       Weather.prototype.checkForecast(latitude, longitude, callback);
       this.sidemenu.close();
       return true;
+    };
+
+    Weather.prototype.addCity = function(ref) {
+      var callback;
+      return callback = function(data) {
+        var newCityCount, oldCityCount;
+        oldCityCount = localStorage.getItem('cityCount');
+        newCityCount = oldCityCount + 1;
+        localStorage.setItem("cityCount", newCityCount);
+        localStorage.setItem("city" + newCityCount, data.city);
+        localStorage.setItem("latitude" + newCityCount, data.latitude);
+        return localStorage.setItem("longitude" + newCityCount, data.longitude);
+      };
     };
 
     Weather.prototype.changeTemperature = function(ref) {
