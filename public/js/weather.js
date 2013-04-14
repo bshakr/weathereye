@@ -205,17 +205,21 @@
       return true;
     };
 
-    Weather.prototype.addCity = function(ref) {
-      var callback;
-      return callback = function(data) {
+    Weather.prototype.addCity = function(cityName) {
+      var addCityURL, callback;
+      callback = function(data) {
         var newCityCount, oldCityCount;
         oldCityCount = localStorage.getItem('cityCount');
         newCityCount = oldCityCount + 1;
         localStorage.setItem("cityCount", newCityCount);
         localStorage.setItem("city" + newCityCount, data.city);
         localStorage.setItem("latitude" + newCityCount, data.latitude);
-        return localStorage.setItem("longitude" + newCityCount, data.longitude);
+        localStorage.setItem("longitude" + newCityCount, data.longitude);
+        return true;
       };
+      addCityURL = 'http://weathereye.co/find/city/' + cityName;
+      $.getJSON(addCityURL, callback);
+      return true;
     };
 
     Weather.prototype.changeTemperature = function(ref) {

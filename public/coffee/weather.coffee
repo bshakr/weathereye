@@ -164,7 +164,7 @@ class Weather
     @.sidemenu.close()
     true
   
-  addCity: (ref) ->
+  addCity: (cityName) ->
     callback = (data) ->
       oldCityCount = localStorage.getItem 'cityCount'
       newCityCount = oldCityCount + 1
@@ -172,6 +172,10 @@ class Weather
       localStorage.setItem "city" + newCityCount, data.city
       localStorage.setItem "latitude" + newCityCount, data.latitude
       localStorage.setItem "longitude" + newCityCount, data.longitude
+      true
+    addCityURL = 'http://weathereye.co/find/city/' + cityName
+    $.getJSON(addCityURL, callback)
+    true
     
   changeTemperature: (ref) ->
     unit = $('ul#temperature li').index($(ref).parent())
