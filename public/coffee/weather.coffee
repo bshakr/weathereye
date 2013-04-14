@@ -1,5 +1,5 @@
 class Weather
-  init: () ->
+  constructor: () ->
     console.log "initializing"
     if !window.navigator.standalone
       if navigator.userAgent.match(/like Mac OS X/i)
@@ -270,7 +270,6 @@ class Weather
 
 window.weather = new Weather
 
-jQuery ->
-  window.weather.init()
+
 
 
