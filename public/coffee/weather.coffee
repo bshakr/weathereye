@@ -142,7 +142,7 @@ class Weather
     true
   
   setupSidemenuCities: () ->
-    $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><form onsubmit="weather.findCity()"><input type="text" id="addCity"></input></form>')
+    $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><form onsubmit="weather.addCity()"><input type="text" id="addCity"></input></form>')
     cityCount = localStorage.getItem 'cityCount'
     for count in [0...cityCount] by 1
       cityIndex = count + 1
