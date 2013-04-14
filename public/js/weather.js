@@ -193,10 +193,10 @@
     Weather.prototype.updateSidemenuCities = function() {
       var city, cityCount, cityIndex, count, _i;
       cityCount = localStorage.getItem('cityCount');
+      $('ul#cities').html(' ');
       for (count = _i = 0; _i < cityCount; count = _i += 1) {
         cityIndex = count + 1;
         city = localStorage.getItem('city' + cityIndex);
-        $('ul#cities').html(' ');
         $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">' + city + '</a></li>');
         true;
       }

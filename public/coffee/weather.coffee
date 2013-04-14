@@ -154,10 +154,10 @@ class Weather
 
   updateSidemenuCities: () ->
     cityCount = localStorage.getItem 'cityCount'
+    $('ul#cities').html(' ')
     for count in [0...cityCount] by 1
       cityIndex = count + 1
       city = localStorage.getItem 'city' + cityIndex
-      $('ul#cities').html(' ')
       $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">'+ city+'</a></li>')
       true
     true
