@@ -179,7 +179,7 @@
 
     Weather.prototype.setupSidemenuCities = function() {
       var city, cityCount, cityIndex, count, _i;
-      $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><input type="text" id="addCity"></input>');
+      $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><form onsubmit="weather.findCity()"><input type="text" id="addCity"></input></form>');
       cityCount = localStorage.getItem('cityCount');
       for (count = _i = 0; _i < cityCount; count = _i += 1) {
         cityIndex = count + 1;
@@ -218,8 +218,9 @@
       return true;
     };
 
-    Weather.prototype.addCity = function(cityName) {
-      var addCityURL, callback;
+    Weather.prototype.addCity = function() {
+      var addCityURL, callback, cityName;
+      cityName = $('#addCity').val();
       callback = function(data) {
         var newCityCount, oldCityCount;
         oldCityCount = localStorage.getItem('cityCount');
