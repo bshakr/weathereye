@@ -290,10 +290,12 @@ jQuery ->
   window.weather.init()
   $("#addCity").keydown((event) ->
     if event.which == 13
-      event.preventDefault()
-      $('#addCity').blur()
       city = $('#addCity').val()
       console.log "adding city trigger with value " + val()
+      event.preventDefault()
+      $('#addCity').blur()
       Weather::addCity($('#addCity').val())
+      true
   )
+  true
 

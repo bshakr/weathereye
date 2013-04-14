@@ -384,16 +384,18 @@
 
   jQuery(function() {
     window.weather.init();
-    return $("#addCity").keydown(function(event) {
+    $("#addCity").keydown(function(event) {
       var city;
       if (event.which === 13) {
-        event.preventDefault();
-        $('#addCity').blur();
         city = $('#addCity').val();
         console.log("adding city trigger with value " + val());
-        return Weather.prototype.addCity($('#addCity').val());
+        event.preventDefault();
+        $('#addCity').blur();
+        Weather.prototype.addCity($('#addCity').val());
+        return true;
       }
     });
+    return true;
   });
 
 }).call(this);
