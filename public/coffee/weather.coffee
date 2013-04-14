@@ -145,8 +145,9 @@ class Weather
   setupSidebarCities: () ->
     $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>')
     cityCount = localStorage.getItem 'cityCount'
-    for count in [1...cityCount] by 1
-      city = localStorage.getItem 'city' + count
+    for count in [0...cityCount] by 1
+      cityIndex = count + 1
+      city = localStorage.getItem 'city' + cityIndex
       $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">'+ city+'</a></li>')
       true
     true

@@ -178,11 +178,12 @@
     };
 
     Weather.prototype.setupSidebarCities = function() {
-      var city, cityCount, count, _i;
+      var city, cityCount, cityIndex, count, _i;
       $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>');
       cityCount = localStorage.getItem('cityCount');
-      for (count = _i = 1; _i < cityCount; count = _i += 1) {
-        city = localStorage.getItem('city' + count);
+      for (count = _i = 0; _i < cityCount; count = _i += 1) {
+        cityIndex = count + 1;
+        city = localStorage.getItem('city' + cityIndex);
         $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">' + city + '</a></li>');
         true;
       }
