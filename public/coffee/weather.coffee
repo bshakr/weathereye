@@ -116,7 +116,7 @@ class Weather
   setupSideMenu: () ->
     console.log "setting up sidemenu"
     #$('#sidebar').html('<h2>Cities</h2><ul id="cities"><li><a href="#" ontouchstart="weather.changeCity(this)">CANTERBURY</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">LONDON</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">CAIRO</a></li><li><a href="#" ontouchstart="weather.changeCity(this)">NEW YORK</a></li></ul id="temperature"><h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>')
-    Weather::setupSidebarCities()
+    Weather::setupSidemenuCities()
     $('#sidebar').append('<h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>')
     @sidemenu = new SlidingView( 'sidebar', 'mainView' )
     @sidemenu.sidebarWidth = 220
@@ -142,12 +142,22 @@ class Weather
     )
     true
   
-  setupSidebarCities: () ->
+  setupSidemenuCities: () ->
     $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>')
     cityCount = localStorage.getItem 'cityCount'
     for count in [0...cityCount] by 1
       cityIndex = count + 1
       city = localStorage.getItem 'city' + cityIndex
+      $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">'+ city+'</a></li>')
+      true
+    true
+
+  updateSidemenuCities: () ->
+    cityCount = localStorage.getItem 'cityCount'
+    for count in [0...cityCount] by 1
+      cityIndex = count + 1
+      city = localStorage.getItem 'city' + cityIndex
+      $('ul#cities').html(' ')
       $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">'+ city+'</a></li>')
       true
     true
@@ -172,6 +182,7 @@ class Weather
       localStorage.setItem "city" + newCityCount, data.city
       localStorage.setItem "latitude" + newCityCount, data.latitude
       localStorage.setItem "longitude" + newCityCount, data.longitude
+      Weather::updateSidemenuCities()
       true
     addCityURL = 'http://weathereye.co/find/city/' + cityName
     $.getJSON(addCityURL, callback)

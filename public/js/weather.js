@@ -141,7 +141,7 @@
     Weather.prototype.setupSideMenu = function() {
       var self;
       console.log("setting up sidemenu");
-      Weather.prototype.setupSidebarCities();
+      Weather.prototype.setupSidemenuCities();
       $('#sidebar').append('<h2>Temperature</h2><ul id="temperature"><li><a href="#" ontouchstart="weather.changeTemperature(this)">fahrenheit</a></li><li><a href="#" ontouchstart="weather.changeTemperature(this)">celsius</a></li></ul>');
       this.sidemenu = new SlidingView('sidebar', 'mainView');
       this.sidemenu.sidebarWidth = 220;
@@ -177,13 +177,26 @@
       return true;
     };
 
-    Weather.prototype.setupSidebarCities = function() {
+    Weather.prototype.setupSidemenuCities = function() {
       var city, cityCount, cityIndex, count, _i;
       $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul>');
       cityCount = localStorage.getItem('cityCount');
       for (count = _i = 0; _i < cityCount; count = _i += 1) {
         cityIndex = count + 1;
         city = localStorage.getItem('city' + cityIndex);
+        $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">' + city + '</a></li>');
+        true;
+      }
+      return true;
+    };
+
+    Weather.prototype.updateSidemenuCities = function() {
+      var city, cityCount, cityIndex, count, _i;
+      cityCount = localStorage.getItem('cityCount');
+      for (count = _i = 0; _i < cityCount; count = _i += 1) {
+        cityIndex = count + 1;
+        city = localStorage.getItem('city' + cityIndex);
+        $('ul#cities').html(' ');
         $('ul#cities').append('<li><a href="#" ontouchstart="weather.changeCity(this)">' + city + '</a></li>');
         true;
       }
@@ -215,6 +228,7 @@
         localStorage.setItem("city" + newCityCount, data.city);
         localStorage.setItem("latitude" + newCityCount, data.latitude);
         localStorage.setItem("longitude" + newCityCount, data.longitude);
+        Weather.prototype.updateSidemenuCities();
         return true;
       };
       addCityURL = 'http://weathereye.co/find/city/' + cityName;
