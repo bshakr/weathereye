@@ -146,7 +146,7 @@ class Weather
     $("#addCity").keydown((event) ->
       if event.which == 13
         city = $('#addCity').val()
-        console.log "adding city trigger with value " + val()
+        console.log "adding city trigger with value " + city
         event.preventDefault()
         $('#addCity').blur()
         Weather::addCity($('#addCity').val())
