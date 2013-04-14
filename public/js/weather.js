@@ -54,7 +54,7 @@
 
     Weather.prototype.checkForecast = function(latitude, longitude, callback) {
       console.log("checking forecast ");
-      this.checkForecastURL = "http://weathereye.co/forcast/" + latitude + '/' + longitude;
+      this.checkForecastURL = "http://weathereye.co/forecast/" + latitude + '/' + longitude;
       $.getJSON(this.checkForecastURL, callback);
       return true;
     };

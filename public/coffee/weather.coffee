@@ -46,7 +46,7 @@ class Weather
   
   checkForecast: (latitude, longitude, callback) ->
     console.log "checking forecast "
-    @checkForecastURL = "http://weathereye.co/forcast/"  + latitude + '/' + longitude
+    @checkForecastURL = "http://weathereye.co/forecast/"  + latitude + '/' + longitude
     $.getJSON(@checkForecastURL, callback)
     true
   
