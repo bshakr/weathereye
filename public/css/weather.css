@@ -106,14 +106,15 @@ body{
 #sidebar li.current::after{
 	content: '';
 	position: absolute;
-	display: block;
-	width: 10px;
-	height: 14px;
-	top: 50%;
+	display: inline-block;
+	width: 28px;
+	height: 28px;
+	top: 20%;
 	right: 10px;
-	margin-top: -7px;
-	background: url(../img/selected.png) no-repeat -24px -402px;
-	opacity: 0.25;
+	background: -webkit-linear-gradient(rgba(238,238,238,0.8) 0%, rgba(255,255,255,0.8) 100%);
+	border-radius: 14px;
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.68);
+	border: 1px solid  rgba(255,255,255, 0.95);
 
 }
 #sidebar li a{
