@@ -208,17 +208,20 @@ ul#daily li{
 @media only screen and (min-width: 321px) and (max-width: 568px) {
     /* styles go here */
     ul#daily{
-	    
+	    position: absolute;
+	    top: 150px;
+	    left: 150px;
     }
     ul#daily li{
 	    
     }
     #mainView h1{
     		position: absolute;
-    		left: 190px;
+    		left: 132px;
+    		top: 30px;    
     }
     #mainView h1 span.temperature{
-    		font-size: 110px;
+    		font-size: 140px;
     }
     #mainView h2#theCity{
 	    position: absolute;
@@ -228,6 +231,7 @@ ul#daily li{
 	    margin-top: 20px;
 	    position: absolute;
 	    left: 20px;
+	    top: 50px;
 	  }
 
 }
