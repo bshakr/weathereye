@@ -141,7 +141,7 @@ class Weather
     true
   
   setupSidemenuCities: () ->
-    $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><input type="text" id="addCity"></input>')
+    $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><input placeholder="add a city" type="text" id="addCity"></input>')
     $("#addCity").keydown((event) ->
       if event.which == 13
         city = $('#addCity').val()

@@ -180,7 +180,7 @@
 
     Weather.prototype.setupSidemenuCities = function() {
       var city, cityCount, cityIndex, count, _i;
-      $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><input type="text" id="addCity"></input>');
+      $('#sidebar').html('<h2>Cities</h2><ul id="cities"></ul><input placeholder="add a city" type="text" id="addCity"></input>');
       $("#addCity").keydown(function(event) {
         var city;
         if (event.which === 13) {
