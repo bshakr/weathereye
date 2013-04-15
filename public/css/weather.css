@@ -1,4 +1,6 @@
-
+html{
+	background: #000;
+}
 body{
 	position: absolute;
 	top: 0px;
@@ -18,6 +20,15 @@ body{
 	letter-spacing: -0.1em;
 	text-align: center;
 	background-color: #000;
+}
+.hide{
+	display: none;
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    /* styles go here */
+    body {
+	    display: none;
+    }
 }
 #container {
 	position: absolute;

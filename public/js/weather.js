@@ -391,15 +391,23 @@
     Weather.prototype.updateOrientation = function() {
       switch (window.orientation) {
         case 0:
-          console.log("portrait!");
+          console.log(Weather.prototype.hideLandscapeView());
           break;
         case 90:
-          console.log("landscape!");
+          console.log(Weather.prototype.showLandscapeView());
           break;
         case -90:
-          console.log("landscape!");
+          console.log(Weather.prototype.showLandscapeView());
       }
       return true;
+    };
+
+    Weather.prototype.showLandscapeView = function() {
+      return $('body').addClass('hide');
+    };
+
+    Weather.prototype.hideLandscapeView = function() {
+      return $('body').removeClass('hide');
     };
 
     return Weather;

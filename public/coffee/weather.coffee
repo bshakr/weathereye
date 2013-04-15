@@ -292,11 +292,14 @@ class Weather
       when 7 then "SUN"
   updateOrientation: () ->
     switch window.orientation
-      when 0 then console.log "portrait!"
-      when 90 then console.log "landscape!"
-      when -90 then console.log "landscape!"
+      when 0 then console.log Weather::hideLandscapeView()
+      when 90 then console.log Weather::showLandscapeView()
+      when -90 then console.log Weather::showLandscapeView()
     true
-
+  showLandscapeView: () ->
+    $('body').addClass('hide')
+  hideLandscapeView: () ->
+    $('body').removeClass('hide')
 window.weather = new Weather
 
 jQuery ->
