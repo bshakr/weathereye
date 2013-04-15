@@ -29,6 +29,28 @@ body{
     body {
 	    display: none;
     }
+    ul#daily{
+	    
+    }
+    ul#daily li{
+	    
+    }
+    #mainView h1{
+	    
+    }
+    #mainView h1 span.temperature{
+    		font-size: 90px;
+    		position: relative;
+    		left: 100px;
+    }
+    #mainView h2{
+	    position: absolute;
+	    right: 300px;
+    }
+    #weather-icon{
+	    margin-top: 20px;
+	  }
+
 }
 #container {
 	position: absolute;
@@ -147,7 +169,7 @@ body{
 	-ms-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 	overflow: hidden;
-	background: -webkit-linear-gradient(#2B75A1 0%, #0a6599 100%);
+	background: -webkit-linear-gradient(#2c76a1 0%, #03507e 100%);
 	border-radius: 10px;
 	box-shadow: -2px 0px 14px rgba(0,0,0,0.654);
 

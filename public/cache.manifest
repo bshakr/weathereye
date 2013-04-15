@@ -5,7 +5,7 @@ NETWORK:
 
 CACHE:
 # style
-css/weather.css
+#css/weather.css
 
 # scripts
 js/jquery.js
@@ -16,7 +16,7 @@ js/SlidingView.js
 js/jstz-1.0.4.min.js
 js/fastclick.js
 js/skycons.js
-js/weather.js
+#js/weather.js
 
 # images
 img/iphone.png
