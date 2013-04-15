@@ -217,8 +217,8 @@
     Weather.prototype.changeCity = function(ref) {
       var callback, city, cityID, latitude, longitude;
       cityID = $('ul#cities li').index($(ref).parent()) + 1;
-      $('ul#cities li.selected').removeClass('selected');
-      $(ref).parent().addClass('selected');
+      $('ul#cities li.current').removeClass('current');
+      $(ref).parent().addClass('current');
       city = localStorage.getItem('city' + cityID);
       latitude = localStorage.getItem('latitude' + cityID);
       longitude = localStorage.getItem('longitude' + cityID);
@@ -253,14 +253,12 @@
     Weather.prototype.changeTemperature = function(ref) {
       var container, existingUnit, newTemp, oldTemp, unit;
       unit = $('ul#temperature li').index($(ref).parent());
-      $('ul#temperature li.selected').removeClass('selected');
-      $(ref).parent().addClass('selected');
+      $('ul#temperature li.current').removeClass('selected');
+      $(ref).parent().addClass('current');
       existingUnit = localStorage.getItem("unit");
       if (unit === 0) {
         if (existingUnit !== "f") {
           localStorage.setItem("unit", "f");
-          $('ul#temperature li.current').removeClass("current");
-          $(ref).parent().addClass("current");
           oldTemp = $('span.temperature').html();
           console.log(oldTemp);
           newTemp = Weather.prototype.convertTemperature("f", oldTemp);
@@ -278,8 +276,6 @@
       } else if (unit === 1) {
         if (existingUnit !== "c") {
           localStorage.setItem("unit", "c");
-          $('ul#temperature li.current').removeClass("current");
-          $(ref).parent().addClass("current");
           oldTemp = $('span.temperature').html();
           console.log(oldTemp);
           newTemp = Weather.prototype.convertTemperature("c", oldTemp);
