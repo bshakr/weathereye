@@ -36,19 +36,20 @@ body{
 	    
     }
     #mainView h1{
-	    
+    		position: absolute;
+    		left: 190px;
     }
     #mainView h1 span.temperature{
-    		font-size: 90px;
-    		position: relative;
-    		left: 100px;
+    		font-size: 110px;
     }
-    #mainView h2{
+    #mainView h2#theCity{
 	    position: absolute;
-	    right: 300px;
+	    left: 190px;
     }
     #weather-icon{
 	    margin-top: 20px;
+	    position: absolute;
+	    left: 20px;
 	  }
 
 }
