@@ -205,6 +205,14 @@ ul#daily li{
 	z-index: 999;
 }
 
+@media (min-width: 768px) {
+	body{
+		background: -webkit-linear-gradient(#2c76a1 0%, #03507e 100%);
+		
+
+	}
+}
+
 @media only screen and (min-width: 321px) and (max-width: 568px) {
     /* styles go here */
     ul#daily{
