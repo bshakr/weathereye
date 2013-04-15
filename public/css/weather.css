@@ -207,9 +207,17 @@ ul#daily li{
 
 @media (min-width: 768px) {
 	body{
-		background: -webkit-linear-gradient(#2c76a1 0%, #03507e 100%);
-		
-
+		 background: -webkit-linear-gradient(#fbfbfb 0%, #bababa 100%);
+		 color: #2c76a1;
+	}
+	h1{
+		font-size: 100px;
+		font-weight: 300;
+		letter-spacing: -0.08em;
+	}
+	.overlay{
+		padding: 25px;
+		background: 
 	}
 }
 
