@@ -1,0 +1,36 @@
+CACHE MANIFEST
+# Mist 2.1.0.2
+
+NETWORK:
+*
+
+CACHE:
+# style
+css/weather.css
+
+# scripts
+js/libraries.js
+js/charts.js
+js/sunny.js
+
+# images
+img/icon_adrift.png
+img/icon_envious.png
+img/icon_goldfish.png
+img/icon_jour.png
+img/icon_looper.png
+img/icon_moon.png
+img/icon_pastel.png
+img/icon_stardust.png
+img/icon@2x.jpg
+img/canvas.png
+img/canvas@2x.png
+img/ipad-landscape.png
+img/ipad-landscape@2x.png
+img/ipad-portrait.png
+img/ipad-portrait@2x.png
+img/iphone.png
+img/iphone5.png
+img/texture.jpg
+img/iphone.jpg
+img/iphone@2x.jpg
