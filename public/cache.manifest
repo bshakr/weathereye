@@ -9,7 +9,14 @@ CACHE:
 css/weather.css
 
 # scripts
-js/libraries.js
+js/jquery.js
+js/jQuery.animate-enhanced.js
+js/countTo.js
+js/oriDomi.js
+js/SlidingView.js
+js/jstz-1.0.4.min.js
+js/fastclick.js
+js/skycons.js
 js/weather.js
 
 # images
