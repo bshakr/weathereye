@@ -15,6 +15,7 @@ class Weather
         Weather::setupMainView(data, localStorage.getItem("city1"))
         Weather::setupSideMenu()
       @.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback)
+      window.addEventListener('orientationchange', @.updateOrientation, false);
     true
   
   setupCache: () ->
@@ -289,10 +290,16 @@ class Weather
       when 5 then "FRI"
       when 6 then "SAT"
       when 7 then "SUN"
-  
+  updateOrientation: () ->
+    switch window.orientation
+      when 0 then console.log "portrait!"
+      when 90 then console.log "landscape!"
+      when -90 then console.log "landscape!"
+    true
 
 window.weather = new Weather
 
 jQuery ->
   window.weather.init()
+  
   true

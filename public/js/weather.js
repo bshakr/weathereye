@@ -26,6 +26,7 @@
           return Weather.prototype.setupSideMenu();
         };
         this.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback);
+        window.addEventListener('orientationchange', this.updateOrientation, false);
       }
       return true;
     };
@@ -385,6 +386,20 @@
         case 7:
           return "SUN";
       }
+    };
+
+    Weather.prototype.updateOrientation = function() {
+      switch (window.orientation) {
+        case 0:
+          console.log("portrait!");
+          break;
+        case 90:
+          console.log("landscape!");
+          break;
+        case -90:
+          console.log("landscape!");
+      }
+      return true;
     };
 
     return Weather;
