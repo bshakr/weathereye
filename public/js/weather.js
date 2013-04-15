@@ -26,7 +26,6 @@
           return Weather.prototype.setupSideMenu();
         };
         this.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback);
-        window.addEventListener('orientationchange', this.updateOrientation, false);
       }
       return true;
     };
@@ -386,28 +385,6 @@
         case 7:
           return "SUN";
       }
-    };
-
-    Weather.prototype.updateOrientation = function() {
-      switch (window.orientation) {
-        case 0:
-          console.log(Weather.prototype.hideLandscapeView());
-          break;
-        case 90:
-          console.log(Weather.prototype.showLandscapeView());
-          break;
-        case -90:
-          console.log(Weather.prototype.showLandscapeView());
-      }
-      return true;
-    };
-
-    Weather.prototype.showLandscapeView = function() {
-      return $('body').addClass('hide');
-    };
-
-    Weather.prototype.hideLandscapeView = function() {
-      return $('body').removeClass('hide');
     };
 
     return Weather;
