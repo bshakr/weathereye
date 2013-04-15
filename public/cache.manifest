@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# Mist 2.1.0.2
+
+NETWORK:
+*
+
+CACHE:
+# style
+css/weather.css
+
+# scripts
+js/libraries.js
+js/weather.js
+
+# images
+img/iphone.png
+img/iphone5.png
