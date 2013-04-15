@@ -24,32 +24,6 @@ body{
 .hide{
 	display: none;
 }
-@media only screen and (min-width: 321px) and (max-width: 568px) {
-    /* styles go here */
-    ul#daily{
-	    
-    }
-    ul#daily li{
-	    
-    }
-    #mainView h1{
-    		position: absolute;
-    		left: 190px;
-    }
-    #mainView h1 span.temperature{
-    		font-size: 110px;
-    }
-    #mainView h2#theCity{
-	    position: absolute;
-	    left: 190px;
-    }
-    #weather-icon{
-	    margin-top: 20px;
-	    position: absolute;
-	    left: 20px;
-	  }
-
-}
 #container {
 	position: absolute;
 	top: 0px;
@@ -229,4 +203,31 @@ ul#daily li{
 	-webkit-animation: rotate 1.2s ease-in-out infinite;
 	-webkit-mask-box-image: -webkit-linear-gradient(white, rgba(255,255,255,0.75));
 	z-index: 999;
+}
+
+@media only screen and (min-width: 321px) and (max-width: 568px) {
+    /* styles go here */
+    ul#daily{
+	    
+    }
+    ul#daily li{
+	    
+    }
+    #mainView h1{
+    		position: absolute;
+    		left: 190px;
+    }
+    #mainView h1 span.temperature{
+    		font-size: 110px;
+    }
+    #mainView h2#theCity{
+	    position: absolute;
+	    left: 190px;
+    }
+    #weather-icon{
+	    margin-top: 20px;
+	    position: absolute;
+	    left: 20px;
+	  }
+
 }
