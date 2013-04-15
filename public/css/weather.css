@@ -151,14 +151,17 @@ h1{
 	font-size: 100px;
 	font-weight: 500;
 }
-h1.temperature{
-	font-size: 150px;
-	font-weight: 300;
+#mainView h1{
+	margin-top: 80px;
+	margin-bottom: 50px;
 	position: relative;
 	left: 24px;
 	width: 296px;
-	margin-top: 80px;
-	margin-bottom: 50px;
+
+}
+h1 span.temperature{
+	font-size: 150px;
+	font-weight: 300;
 }
 h2{
 	font-size: 32px;
@@ -175,6 +178,7 @@ ul#daily li{
 	float: left;
 	width: 45px;
 	margin: 0;
+	margin-left: 3px;
 
 }
 #weather-icon{
