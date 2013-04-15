@@ -210,14 +210,30 @@ ul#daily li{
 		 background: -webkit-linear-gradient(#fbfbfb 0%, #bababa 100%);
 		 color: #2c76a1;
 	}
+	p.lead{
+		font-size: 24px;
+		color: #333;
+	}
 	h1{
 		font-size: 100px;
 		font-weight: 300;
 		letter-spacing: -0.08em;
 	}
+	h2{
+		line-height: 48px;
+	}
 	.overlay{
 		padding: 25px;
-		background: 
+		background: rgba(0,0,0,0.6);
+		position: absolute;
+		bottom: 10px;
+		color: white;
+		box-shadow: 0 0 10px rgba(0,0,0,0.5);
+		border: 1px solid rgba(204,204,204,0.67);
+		left: 5%;
+		width: 400px;
+		text-shadow: 0px 0px 1px rgba(0,0,0,0.63);
+		text-align: left;
 	}
 }
 
