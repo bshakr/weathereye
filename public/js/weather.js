@@ -32,7 +32,6 @@
 
     Weather.prototype.setupCache = function() {
       console.log("setting up cache");
-      localStorage.clear();
       if (localStorage.getItem("initialized") !== "true") {
         localStorage.setItem("initialized", "true");
         localStorage.setItem("unit", "c");

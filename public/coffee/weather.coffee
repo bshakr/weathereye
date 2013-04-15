@@ -19,7 +19,7 @@ class Weather
   
   setupCache: () ->
     console.log "setting up cache"
-    localStorage.clear()
+    #localStorage.clear()
     if localStorage.getItem("initialized") != "true"
       localStorage.setItem "initialized" , "true"
       localStorage.setItem "unit" , "c"
