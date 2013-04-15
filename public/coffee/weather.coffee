@@ -15,8 +15,6 @@ class Weather
         Weather::setupMainView(data, localStorage.getItem("city1"))
         Weather::setupSideMenu()
       @.checkForecast(localStorage.getItem("latitude1"), localStorage.getItem("longitude1"), callback)
-      
-      
     true
   
   setupCache: () ->
