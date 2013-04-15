@@ -253,7 +253,7 @@
     Weather.prototype.changeTemperature = function(ref) {
       var container, existingUnit, newTemp, oldTemp, unit;
       unit = $('ul#temperature li').index($(ref).parent());
-      $('ul#temperature li.current').removeClass('selected');
+      $('ul#temperature li.current').removeClass('current');
       $(ref).parent().addClass('current');
       existingUnit = localStorage.getItem("unit");
       if (unit === 0) {
