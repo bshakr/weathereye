@@ -1,5 +1,9 @@
 #Weather web app 
 
-This is a weather web app targeted for the iPhone as part of my course work for the Masters in Mobile application design at the Kent University.
+This is a weather web app targeted for the iPhone.
 
-*Note* that this will only work on iOS
+The app's backend is written in Ruby. It is a small sinatra app. The client side is written in coffeescript. The weather data comes from the forecast.io API.
+
+*Note* that this will only work on an iPhone. Future updates will include support for other devices.
+
+
